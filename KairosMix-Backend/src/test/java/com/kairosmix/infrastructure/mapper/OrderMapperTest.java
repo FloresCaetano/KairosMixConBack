@@ -1,5 +1,6 @@
 package com.kairosmix.infrastructure.mapper;
 
+import com.kairosmix.domain.entities.Client;
 import com.kairosmix.domain.entities.Order;
 import com.kairosmix.infrastructure.rest.dto.OrderDTO;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +23,21 @@ public class OrderMapperTest {
     @BeforeEach
     void setUp() {
         LocalDateTime now = LocalDateTime.now();
+
+        Client client = Client.builder()
+            .id(1L)
+            .documentId("1234567890")
+            .documentType(Client.DocumentType.CEDULA)
+            .name("Test Client")
+            .email("test@client.com")
+            .phone("1234567890")
+            .address("Test Address 123")
+            .city("Quito")
+            .build();
+
         order = Order.builder()
             .id(1L)
+            .client(client)
             .status(Order.OrderStatus.PENDING)
             .totalPrice(java.math.BigDecimal.valueOf(150.0))
             .createdAt(now)

@@ -24,10 +24,13 @@ public class ClientRepositoryAdapterTest {
     @BeforeEach
     void setUp() {
         testClient = Client.builder()
+            .documentId("DOC-REPO-001")
+            .documentType(Client.DocumentType.CEDULA)
             .name("Test Client")
             .email("test@client.com")
             .phone("1234567890")
             .address("Test Address 123")
+            .city("Quito")
             .build();
     }
 

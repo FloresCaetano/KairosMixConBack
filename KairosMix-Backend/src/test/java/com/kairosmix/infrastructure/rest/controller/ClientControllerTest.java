@@ -36,17 +36,23 @@ public class ClientControllerTest {
     @BeforeEach
     void setUp() {
         testClientDTO = ClientDTO.builder()
+            .documentId("DOC-CTRL-CREATE1")
+            .documentType("CEDULA")
             .name("Test Client Corp")
             .email("test@corp.com")
             .phone("1234567890")
             .address("Test Street 123")
+            .city("Quito")
             .build();
 
         testClient = Client.builder()
+            .documentId("DOC-CTRL-EXIST1")
+            .documentType(Client.DocumentType.CEDULA)
             .name("Existing Client")
             .email("existing@corp.com")
             .phone("0987654321")
             .address("Existing Street 456")
+            .city("Guayaquil")
             .build();
     }
 
@@ -70,7 +76,7 @@ public class ClientControllerTest {
     @Test
     void testGetClientById() throws Exception {
         Client saved = clientRepository.save(testClient);
-        
+
         mockMvc.perform(get("/v1/clients/" + saved.getId())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
@@ -80,9 +86,9 @@ public class ClientControllerTest {
     @Test
     void testDeleteClient() throws Exception {
         Client saved = clientRepository.save(testClient);
-        
+
         mockMvc.perform(delete("/v1/clients/" + saved.getId())
             .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk());
+            .andExpect(status().isNoContent());
     }
 }

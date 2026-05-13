@@ -22,18 +22,24 @@ public class ClientMapperTest {
     void setUp() {
         client = Client.builder()
             .id(1L)
+            .documentId("1234567890")
+            .documentType(Client.DocumentType.CEDULA)
             .name("Empresa XYZ")
             .email("contacto@empresa.com")
             .phone("1234567890")
             .address("Calle Principal 123")
+            .city("Quito")
             .build();
 
         clientDTO = ClientDTO.builder()
             .id(1L)
+            .documentId("1234567890")
+            .documentType("CEDULA")
             .name("Empresa XYZ")
             .email("contacto@empresa.com")
             .phone("1234567890")
             .address("Calle Principal 123")
+            .city("Quito")
             .build();
     }
 

@@ -38,7 +38,7 @@ public class ProductControllerTest {
     @BeforeEach
     void setUp() {
         testProductDTO = ProductDTO.builder()
-            .code("TEST-CTRL-001")
+            .code("TC001")
             .name("Test Controller Product")
             .countryOfOrigin("Test Country")
             .pricePerPound(java.math.BigDecimal.valueOf(15.0))
@@ -49,7 +49,7 @@ public class ProductControllerTest {
             .build();
 
         testProduct = Product.builder()
-            .code("TEST-CTRL-002")
+            .code("TC002")
             .name("Existing Product")
             .countryOfOrigin("Test Country")
             .pricePerPound(java.math.BigDecimal.valueOf(20.0))
@@ -84,14 +84,14 @@ public class ProductControllerTest {
         mockMvc.perform(get("/v1/products/" + saved.getId())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("$.code").value("TEST-CTRL-002"));
+            .andExpect(jsonPath("$.code").value("TC002"));
     }
 
     @Test
     void testUpdateProduct() throws Exception {
         Product saved = productRepository.save(testProduct);
         ProductDTO updateDTO = ProductDTO.builder()
-            .code("TEST-CTRL-002-UPDATED")
+            .code("TC002-UPD")
             .name("Updated Name")
             .countryOfOrigin("Updated Country")
             .pricePerPound(java.math.BigDecimal.valueOf(25.0))

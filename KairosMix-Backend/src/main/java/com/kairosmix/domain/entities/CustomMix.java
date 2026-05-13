@@ -33,6 +33,7 @@ public class CustomMix {
     private Client client;
 
     @OneToMany(mappedBy = "customMix", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @Builder.Default
     private List<MixComponent> components = new ArrayList<>();
 
     private String description;
