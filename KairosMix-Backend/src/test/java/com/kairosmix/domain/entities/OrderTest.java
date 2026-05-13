@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -112,5 +113,73 @@ class OrderTest {
         order.setStatus(Order.OrderStatus.PROCESSING);
         order.transitionTo(Order.OrderStatus.COMPLETED);
         assertNotNull(order.getCompletedAt());
+    }
+
+    @Test
+    @DisplayName("Should cover multiple valid transitions across statuses")
+    void testValidTransitionsAcrossStatuses() {
+        // PENDING -> CANCELLED (exercise second operand of OR)
+        order.setStatus(Order.OrderStatus.PENDING);
+        order.transitionTo(Order.OrderStatus.CANCELLED);
+        assertEquals(Order.OrderStatus.CANCELLED, order.getStatus());
+
+        // PROCESSING -> WAITING
+        order.setStatus(Order.OrderStatus.PROCESSING);
+        order.transitionTo(Order.OrderStatus.WAITING);
+        assertEquals(Order.OrderStatus.WAITING, order.getStatus());
+
+        // WAITING -> PROCESSING
+        order.transitionTo(Order.OrderStatus.PROCESSING);
+        assertEquals(Order.OrderStatus.PROCESSING, order.getStatus());
+
+        // CLIENT_PENDING -> PENDING
+        order.setStatus(Order.OrderStatus.CLIENT_PENDING);
+        order.transitionTo(Order.OrderStatus.PENDING);
+        assertEquals(Order.OrderStatus.PENDING, order.getStatus());
+    }
+
+    @Test
+    @DisplayName("Should throw on invalid transitions to cover negative branches")
+    void testMoreInvalidTransitions() {
+        order.setStatus(Order.OrderStatus.PENDING);
+        assertThrows(IllegalStateException.class, () -> order.transitionTo(Order.OrderStatus.WAITING));
+
+        order.setStatus(Order.OrderStatus.PROCESSING);
+        assertThrows(IllegalStateException.class, () -> order.transitionTo(Order.OrderStatus.PENDING));
+
+        order.setStatus(Order.OrderStatus.WAITING);
+        assertThrows(IllegalStateException.class, () -> order.transitionTo(Order.OrderStatus.COMPLETED));
+
+        order.setStatus(Order.OrderStatus.CLIENT_PENDING);
+        assertThrows(IllegalStateException.class, () -> order.transitionTo(Order.OrderStatus.COMPLETED));
+
+        order.setStatus(Order.OrderStatus.CANCELLED);
+        assertThrows(IllegalStateException.class, () -> order.transitionTo(Order.OrderStatus.PENDING));
+    }
+
+    @Test
+    @DisplayName("Should validate order branches for empty items and negative total")
+    void testValidateOrderBranches() {
+        Order o = Order.builder()
+            .client(client)
+            .status(Order.OrderStatus.PENDING)
+            .items(new ArrayList<>())
+            .totalPrice(BigDecimal.ZERO)
+            .build();
+
+        assertThrows(IllegalArgumentException.class, o::validateOrder);
+
+        o.addItem(OrderItem.builder().product(product).quantity(1).unitPrice(BigDecimal.ONE).build());
+        o.setTotalPrice(BigDecimal.valueOf(-1));
+        assertThrows(IllegalArgumentException.class, o::validateOrder);
+
+        o.setTotalPrice(BigDecimal.ONE);
+        assertDoesNotThrow(o::validateOrder);
+    }
+
+    @Test
+    @DisplayName("OrderStatus should expose description")
+    void testOrderStatusDescription() {
+        assertNotNull(Order.OrderStatus.PENDING.getDescription());
     }
 }
