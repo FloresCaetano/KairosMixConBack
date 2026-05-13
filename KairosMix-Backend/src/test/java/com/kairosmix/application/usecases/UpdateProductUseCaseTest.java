@@ -18,27 +18,48 @@ class UpdateProductUseCaseTest {
     @InjectMocks private UpdateProductUseCase useCase;
 
     @Test
-    void testExecute() {
+    void testExecuteWithNull() {
         assertThrows(IllegalArgumentException.class, () -> useCase.execute(1L, null));
+    }
+
+    @Test
+    void testExecuteProductNotFound() {
+        Product p = new Product();
+        p.setCode("123");
+        when(productRepository.findById(1L)).thenReturn(Optional.empty());
+        assertThrows(IllegalArgumentException.class, () -> useCase.execute(1L, p));
     }
     
     @Test
     void testExecuteValid() {
-        Product p = new Product();
-        p.setId(1L);
-        p.setCode("123");
-        p.setName("N");
-        p.setCountryOfOrigin("CO");
-        p.setPricePerPound(BigDecimal.ONE);
-        p.setWholesalePrice(BigDecimal.ONE);
-        p.setRetailPrice(BigDecimal.ONE);
-        p.setInitialStock(10);
+        Product existing = new Product();
+        existing.setId(1L);
+        existing.setCode("OLD-CODE");
+        existing.setName("Old");
         
-        when(productRepository.findById(1L)).thenReturn(Optional.of(p));
-        when(productRepository.save(any())).thenReturn(p);
+        Product update = new Product();
+        update.setId(1L);
+        update.setCode("NEW-CODE");
+        update.setName("New");
+        update.setCountryOfOrigin("CO");
+        update.setPricePerPound(BigDecimal.valueOf(15.0));
+        update.setWholesalePrice(BigDecimal.valueOf(12.0));
+        update.setRetailPrice(BigDecimal.valueOf(18.0));
+        update.setInitialStock(50);
+        update.setCurrentStock(50);
         
-        Product updated = useCase.execute(1L, p);
+        when(productRepository.findById(1L)).thenReturn(Optional.of(existing));
+        when(productRepository.save(any())).thenReturn(update);
+        
+        Product updated = useCase.execute(1L, update);
         assertNotNull(updated);
+        assertEquals("NEW-CODE", updated.getCode());
         verify(productRepository).save(any());
+    }
+
+    @Test
+    void testExecuteNullId() {
+        Product p = new Product();
+        assertThrows(IllegalArgumentException.class, () -> useCase.execute(null, p));
     }
 }

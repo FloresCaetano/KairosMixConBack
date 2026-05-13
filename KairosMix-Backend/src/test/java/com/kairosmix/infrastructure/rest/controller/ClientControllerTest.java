@@ -84,11 +84,42 @@ public class ClientControllerTest {
     }
 
     @Test
+    void testGetClientByIdNotFound() throws Exception {
+        mockMvc.perform(get("/v1/clients/99999")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testGetClientByDocument() throws Exception {
+        Client saved = clientRepository.save(testClient);
+
+        mockMvc.perform(get("/v1/clients/document/" + testClient.getDocumentId())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.name").value("Existing Client"));
+    }
+
+    @Test
+    void testGetClientByDocumentNotFound() throws Exception {
+        mockMvc.perform(get("/v1/clients/document/NONEXISTENT")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void testDeleteClient() throws Exception {
         Client saved = clientRepository.save(testClient);
 
         mockMvc.perform(delete("/v1/clients/" + saved.getId())
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void testDeleteClientNotFound() throws Exception {
+        mockMvc.perform(delete("/v1/clients/99999")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
     }
 }

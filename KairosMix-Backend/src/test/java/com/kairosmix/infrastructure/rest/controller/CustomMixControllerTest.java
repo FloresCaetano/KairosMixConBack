@@ -76,6 +76,22 @@ public class CustomMixControllerTest {
             .andExpect(jsonPath("$.name").value("Existing Mix"));
     }
 
+    @Test
+    void testGetCustomMixByIdNotFound() throws Exception {
+        mockMvc.perform(get("/v1/custom-mixes/99999")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testGetCustomMixesByClient() throws Exception {
+        CustomMix saved = customMixRepository.save(testCustomMix);
+        
+        mockMvc.perform(get("/v1/custom-mixes/client/99999")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+    }
+
     /*
     @Test
     void testDeleteCustomMix() throws Exception {
@@ -86,4 +102,11 @@ public class CustomMixControllerTest {
             .andExpect(status().isOk());
     }
     */
+
+    @Test
+    void testDeleteCustomMixNotFound() throws Exception {
+        mockMvc.perform(delete("/v1/custom-mixes/99999")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
 }

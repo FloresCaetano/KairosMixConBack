@@ -75,6 +75,38 @@ public class OrderControllerTest {
     }
 
     @Test
+    void testGetOrderByIdNotFound() throws Exception {
+        mockMvc.perform(get("/v1/orders/99999")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testGetOrdersByClient() throws Exception {
+        Order saved = orderRepository.save(testOrder);
+        
+        mockMvc.perform(get("/v1/orders/client/" + testOrder.getClient().getId())
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+    }
+
+    @Test
+    void testGetOrdersByStatus() throws Exception {
+        orderRepository.save(testOrder);
+        
+        mockMvc.perform(get("/v1/orders/status/PENDING")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk());
+    }
+
+    @Test
+    void testGetOrdersByStatusInvalid() throws Exception {
+        mockMvc.perform(get("/v1/orders/status/INVALID_STATUS")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void testUpdateOrderStatus() throws Exception {
         Order saved = orderRepository.save(testOrder);
 
@@ -84,14 +116,37 @@ public class OrderControllerTest {
             .andExpect(status().isOk());
     }
 
-    /*
+    @Test
+    void testUpdateOrderStatusNotFound() throws Exception {
+        mockMvc.perform(patch("/v1/orders/99999/status")
+            .contentType(MediaType.APPLICATION_JSON)
+            .param("status", "PROCESSING"))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testUpdateOrderStatusInvalid() throws Exception {
+        Order saved = orderRepository.save(testOrder);
+
+        mockMvc.perform(patch("/v1/orders/" + saved.getId() + "/status")
+            .contentType(MediaType.APPLICATION_JSON)
+            .param("status", "INVALID"))
+            .andExpect(status().isBadRequest());
+    }
+
     @Test
     void testDeleteOrder() throws Exception {
         Order saved = orderRepository.save(testOrder);
 
         mockMvc.perform(delete("/v1/orders/" + saved.getId())
             .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk());
+            .andExpect(status().isNoContent());
     }
-    */
+
+    @Test
+    void testDeleteOrderNotFound() throws Exception {
+        mockMvc.perform(delete("/v1/orders/99999")
+            .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isBadRequest());
+    }
 }
