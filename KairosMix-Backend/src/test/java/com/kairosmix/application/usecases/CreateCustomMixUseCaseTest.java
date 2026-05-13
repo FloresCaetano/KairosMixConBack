@@ -40,4 +40,16 @@ class CreateCustomMixUseCaseTest {
         assertNotNull(saved);
         verify(customMixRepository).save(any());
     }
+
+    @Test
+    void testExecuteDuplicateName() {
+        CustomMix mix = new CustomMix();
+        mix.setName("Mix");
+
+        when(customMixRepository.findByName("Mix")).thenReturn(Optional.of(new CustomMix()));
+
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> useCase.execute(mix));
+        assertTrue(ex.getMessage().contains("Ya existe una mezcla con el nombre"));
+        verify(customMixRepository, never()).save(any());
+    }
 }
