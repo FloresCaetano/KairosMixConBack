@@ -1,0 +1,696 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[spanish]{babel}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{colortbl}
+
+% Configuración de márgenes
+\geometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+
+% Definir colores personalizados
+\definecolor{cafeOscuro}{RGB}{139, 69, 19}
+\definecolor{verde}{RGB}{60, 179, 113}
+\definecolor{grisClaro}{RGB}{240, 240, 240}
+\definecolor{azulOscuro}{RGB}{25, 25, 112}
+
+% Configurar encabezado y pie
+\pagestyle{fancy}
+\fancyhead[L]{\textcolor{cafeOscuro}{\textbf{KairosMix}}}
+\fancyhead[R]{\textcolor{cafeOscuro}{PDCA Temporal}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{\today}
+
+% Título personalizado
+\title{
+    \textcolor{cafeOscuro}{\Large \textbf{📊 PDCA Temporal}} \\
+    \textcolor{verde}{\Large \textbf{Sistema de Gestión de Frutos Secos Premium}} \\
+    \vspace{0.5cm}
+    \textcolor{cafeOscuro}{\large KairosMix}
+}
+\author{}
+\date{}
+
+\begin{document}
+
+% Portada personalizada
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    
+    \textcolor{cafeOscuro}{\Huge \textbf{🌰 PDCA TEMPORAL}}
+    
+    \vspace{1cm}
+    \textcolor{verde}{\huge \textbf{KairosMix}}
+    
+    \vspace{1cm}
+    \textcolor{cafeOscuro}{\Large Sistema de Gestión de Frutos Secos Premium}
+    
+    \vspace{3cm}
+    \rule{\textwidth}{2pt}
+    
+    \vspace{2cm}
+    \textbf{\Large Ciclo de Mejora Continua}
+    
+    \vspace{1cm}
+    \textbf{Plan - Do - Check - Act}
+    
+    \vspace{3cm}
+    
+    \begin{flushleft}
+        \textbf{Tecnologías:}
+        \begin{itemize}
+            \item React 19.1.0
+            \item Vite 7.0.4
+            \item Bootstrap 5.3.7
+            \item ESLint
+        \end{itemize}
+    \end{flushleft}
+    
+    \vfill
+    \textcolor{grisClaro}{\textit{Documento de calidad - Aseguramiento de Calidad}}
+    
+    \vspace{1cm}
+    \textcolor{cafeOscuro}{\textbf{\today}}
+    
+\end{titlepage}
+
+% Tabla de contenidos
+\tableofcontents
+\newpage
+
+\chapter{Introducción y Objetivo General}
+
+\section{Objetivo General del PDCA}
+
+Mejorar la calidad, funcionalidad y experiencia de usuario del sistema \textcolor{cafeOscuro}{\textbf{KairosMix}} mediante un ciclo de mejora continua estructurado bajo la metodología PDCA (Plan-Do-Check-Act).
+
+\section{Metodología PDCA}
+
+El ciclo PDCA es una metodología de mejora continua que consta de cuatro fases:
+
+\begin{itemize}
+    \item[\textcolor{cafeOscuro}{\textbf{Plan}}] Planificación de objetivos, alcance y actividades
+    \item[\textcolor{verde}{\textbf{Do}}] Ejecución de las actividades planificadas
+    \item[\textcolor{azulOscuro}{\textbf{Check}}] Verificación y evaluación de resultados
+    \item[\textcolor{cafeOscuro}{\textbf{Act}}] Acciones de mejora y seguimiento
+\end{itemize}
+
+\chapter{PLAN - Planificación}
+
+\section{Objetivos del Ciclo}
+
+Los objetivos principales de este ciclo PDCA son:
+
+\begin{itemize}
+    \item Validar la funcionalidad de los módulos implementados
+    \item Identificar defectos y áreas de mejora en el código
+    \item Asegurar calidad en la interfaz de usuario (UI/UX)
+    \item Mejorar la estructura del código y mantenibilidad
+    \item Optimizar el rendimiento de la aplicación web
+    \item Establecer métricas de calidad para futuras iteraciones
+\end{itemize}
+
+\section{Alcance del Proyecto}
+
+El proyecto \textbf{KairosMix} es una aplicación web moderna para la gestión integral de un negocio de frutos secos premium. El alcance de este PDCA incluye los siguientes módulos:
+
+\subsection{Módulo de Gestión de Productos (Implementado)}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|p{8cm}|}
+        \hline
+        \textbf{Estado} & ✅ Implementado \\
+        \hline
+        \textbf{Funcionalidades} & 
+            \begin{itemize}
+                \item Agregar, editar y eliminar productos
+                \item Control de stock inteligente con alertas automáticas
+                \item Categorización por tipo de fruto seco
+                \item Gestión de proveedores y fechas de vencimiento
+                \item Búsqueda y filtrado avanzado en tiempo real
+            \end{itemize} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Módulos en Desarrollo}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|p{8cm}|}
+        \hline
+        \textbf{Módulo} & \textbf{Estado} \\
+        \hline
+        Gestión de Clientes & 🚧 En desarrollo \\
+        \hline
+        Gestión de Pedidos & 🚧 En desarrollo \\
+        \hline
+        Mezcla Personalizada & 🚧 En desarrollo \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Roles y Responsabilidades}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|p{10cm}|}
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{Rol} & \textbf{Responsabilidades} \\
+        \hline
+        \textbf{Product Owner} & 
+            \begin{itemize}
+                \item Definir requisitos del proyecto
+                \item Validar funcionalidad implementada
+                \item Priorizar defectos y mejoras
+            \end{itemize} \\
+        \hline
+        \textbf{Dev Team} & 
+            \begin{itemize}
+                \item Implementar correcciones
+                \item Realizar mejoras técnicas
+                \item Optimizar código
+            \end{itemize} \\
+        \hline
+        \textbf{QA/Tester} & 
+            \begin{itemize}
+                \item Ejecutar pruebas funcionales
+                \item Reportar defectos encontrados
+                \item Validar criterios de aceptación
+            \end{itemize} \\
+        \hline
+        \textbf{Tech Lead} & 
+            \begin{itemize}
+                \item Supervisar calidad técnica
+                \item Revisar arquitectura del código
+                \item Definir estándares de desarrollo
+            \end{itemize} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Métricas a Evaluar}
+
+\begin{itemize}
+    \item[\textcolor{cafeOscuro}{\textbf{Funcionalidad}}] Porcentaje de funciones operativas sin defectos críticos
+    \item[\textcolor{cafeOscuro}{\textbf{Defectos}}] Clasificación en Críticos, Mayores y Menores
+    \item[\textcolor{cafeOscuro}{\textbf{Cobertura de Pruebas}}] Porcentaje de componentes testeados
+    \item[\textcolor{cafeOscuro}{\textbf{Performance}}] Tiempo de carga y respuesta de acciones
+    \item[\textcolor{cafeOscuro}{\textbf{Accesibilidad}}] Validación de estándares WCAG
+    \item[\textcolor{cafeOscuro}{\textbf{Calidad de Código}}] Resultado de ESLint y análisis estático
+\end{itemize}
+
+\section{Timeline Planificado}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|p{6cm}|c|}
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{Fase} & \textbf{Descripción} & \textbf{Duración} \\
+        \hline
+        PLAN & Planificación y definición de objetivos & 1 día \\
+        \hline
+        DO & Ejecución de actividades y desarrollo & 3-4 días \\
+        \hline
+        CHECK & Verificación y pruebas & 2-3 días \\
+        \hline
+        ACT & Mejora continua y optimización & 2-3 días \\
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{Total} & \textbf{Ciclo Completo} & \textbf{1-2 semanas} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\chapter{DO - Ejecución}
+
+\section{Actividades Planificadas}
+
+\subsection{A. Desarrollo e Implementación}
+
+\subsubsection{Completar módulo de Gestión de Clientes}
+\begin{itemize}
+    \item Formulario de registro de cliente con validación
+    \item Base de datos o almacenamiento local (localStorage/IndexedDB)
+    \item Sistema de búsqueda y filtrado de clientes
+    \item Vista de detalle de cliente
+\end{itemize}
+
+\subsubsection{Completar módulo de Gestión de Pedidos}
+\begin{itemize}
+    \item Interfaz de creación de pedidos
+    \item Asociación de clientes a pedidos
+    \item Cálculo automático de totales y costos
+    \item Historial y consulta de pedidos anteriores
+\end{itemize}
+
+\subsubsection{Implementar Mezcla Personalizada}
+\begin{itemize}
+    \item Selector interactivo de productos
+    \item Cálculo y visualización de información nutricional
+    \item Guardado y recuperación de mezclas personalizadas
+\end{itemize}
+
+\subsection{B. Testing Inicial}
+\begin{itemize}
+    \item Pruebas funcionales básicas en cada módulo
+    \item Validación de formularios y datos de entrada
+    \item Pruebas de almacenamiento y persistencia de datos
+    \item Pruebas de integración entre módulos
+\end{itemize}
+
+\subsection{C. Optimizaciones Técnicas}
+\begin{itemize}
+    \item Ejecutar análisis de código: \texttt{npm run lint}
+    \item Revisar estructura de componentes React
+    \item Optimizar imports y dependencias
+    \item Mejorar performance de renderizado
+\end{itemize}
+
+\section{Checklist de Implementación}
+
+\textcolor{verde}{\textbf{Antes de pasar a la fase CHECK, validar:}}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|p{8cm}|c|}
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{Item} & \textbf{Estado} \\
+        \hline
+        Todos los módulos funcionan en el navegador & ☐ \\
+        \hline
+        No hay errores en la consola del navegador & ☐ \\
+        \hline
+        ESLint no reporta errores críticos & ☐ \\
+        \hline
+        Los datos persisten correctamente & ☐ \\
+        \hline
+        Responsive design funciona en móvil y desktop & ☐ \\
+        \hline
+        Aplicación puede ser compilada sin errores & ☐ \\
+        \hline
+        Documentación básica completada & ☐ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\chapter{CHECK - Verificación}
+
+\section{Plan de Testing}
+
+\subsection{Pruebas Funcionales}
+
+\subsubsection{Módulo de Productos}
+\begin{itemize}
+    \item Crear un producto nuevo con validación de campos
+    \item Editar información de un producto existente
+    \item Eliminar un producto del sistema
+    \item Aplicar filtros de búsqueda en tiempo real
+    \item Validar alertas automáticas de stock bajo
+\end{itemize}
+
+\subsubsection{Módulo de Clientes}
+\begin{itemize}
+    \item Registrar nuevo cliente con datos completos
+    \item Editar información de cliente
+    \item Buscar cliente por nombre o email
+    \item Validar información obligatoria
+    \item Eliminar cliente del sistema
+\end{itemize}
+
+\subsubsection{Módulo de Pedidos}
+\begin{itemize}
+    \item Crear nuevo pedido asociado a un cliente
+    \item Agregar productos a un pedido
+    \item Calcular total correctamente (incluyen impuestos si aplica)
+    \item Generar reporte de pedidos
+    \item Editar y cancelar pedidos
+\end{itemize}
+
+\subsubsection{Mezcla Personalizada}
+\begin{itemize}
+    \item Seleccionar múltiples productos
+    \item Ver información nutricional combinada
+    \item Guardar mezcla personalizada
+    \item Recuperar mezclas guardadas previamente
+    \item Editar mezclas existentes
+\end{itemize}
+
+\subsection{Pruebas de Calidad}
+
+\subsubsection{UI/UX}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|}
+        \hline
+        \textbf{Criterio} & \textbf{Validado} \\
+        \hline
+        Consistencia visual en toda la aplicación & ☐ \\
+        \hline
+        Paleta de colores (café y verde) coherente & ☐ \\
+        \hline
+        Accesibilidad: contraste de colores (WCAG) & ☐ \\
+        \hline
+        Botones e iconos bien identificados & ☐ \\
+        \hline
+        Mensajes de error claros y útiles & ☐ \\
+        \hline
+        Responsive en dispositivos móviles & ☐ \\
+        \hline
+        Formularios intuitivos y fáciles de usar & ☐ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{Rendimiento}
+\begin{itemize}
+    \item Tiempo de carga inicial $< 3$ segundos
+    \item No hay lag perceptible en interacciones
+    \item Gestión eficiente de memoria (sin memory leaks)
+    \item Aplicación funciona bien en conexiones lentas
+\end{itemize}
+
+\subsubsection{Código}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|}
+        \hline
+        \textbf{Criterio} & \textbf{Cumple} \\
+        \hline
+        Sin errores de ESLint & ☐ \\
+        \hline
+        Componentes reutilizables & ☐ \\
+        \hline
+        Props validadas correctamente & ☐ \\
+        \hline
+        Estructura clara de carpetas & ☐ \\
+        \hline
+        Nombres de variables descriptivos & ☐ \\
+        \hline
+        Código comentado donde sea necesario & ☐ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Reporte de Defectos}
+
+\subsection{Plantilla de Defecto}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|p{3cm}|p{10cm}|}
+        \hline
+        \textbf{Campo} & \textbf{Descripción} \\
+        \hline
+        \textbf{ID} & Código único del defecto (ej: DEFECTO-001) \\
+        \hline
+        \textbf{Severidad} & Crítico | Mayor | Menor \\
+        \hline
+        \textbf{Módulo} & Nombre del módulo afectado \\
+        \hline
+        \textbf{Descripción} & Descripción clara del problema \\
+        \hline
+        \textbf{Pasos para reproducir} & Lista detallada 1. 2. 3. \\
+        \hline
+        \textbf{Resultado esperado} & Comportamiento correcto \\
+        \hline
+        \textbf{Resultado actual} & Comportamiento observado \\
+        \hline
+        \textbf{Asignado a} & Miembro responsable \\
+        \hline
+        \textbf{Estado} & Abierto | En progreso | Resuelto \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Matriz de Evaluación}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|p{6cm}|}
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{Criterio} & \textbf{Peso} & \textbf{Estado} & \textbf{Observaciones} \\
+        \hline
+        Funcionalidad & 40\% & ⭕ & \\
+        \hline
+        Calidad de Código & 25\% & ⭕ & \\
+        \hline
+        UX/UI & 20\% & ⭕ & \\
+        \hline
+        Rendimiento & 10\% & ⭕ & \\
+        \hline
+        Testing Coverage & 5\% & ⭕ & \\
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{TOTAL} & \textbf{100\%} & \textbf{⭕} & \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\textbf{Leyenda:} 🟢 Aprobado $|$ 🟡 Parcial $|$ 🔴 No aprobado $|$ ⭕ Por evaluar
+
+\section{Resultados Esperados}
+
+Los criterios de aceptación para esta fase CHECK son:
+
+\begin{itemize}
+    \item Mínimo 85\% de funcionalidad operativa
+    \item 0 defectos críticos identificados
+    \item Máximo 5 defectos mayores
+    \item ESLint sin errores o solo warnings menores
+    \item Score de accesibilidad $\geq 80$
+    \item Tiempo de carga $< 3$ segundos
+\end{itemize}
+
+\chapter{ACT - Acciones de Mejora}
+
+\section{Análisis de Resultados}
+
+\subsection{Actividades}
+\begin{itemize}
+    \item Documentar hallazgos principales del ciclo
+    \item Priorizar defectos encontrados por severidad
+    \item Identificar raíces de problemas comunes
+    \item Clasificar mejoras por impacto y complejidad
+    \item Generar lecciones aprendidas
+\end{itemize}
+
+\section{Plan de Mejora Continua}
+
+\subsection{Mejoras Inmediatas (Sprint Siguiente)}
+
+\begin{itemize}
+    \item Corregir todos los defectos críticos identificados
+    \item Optimizar componentes con bajo rendimiento
+    \item Mejorar mensajes de error y validaciones de formularios
+    \item Implementar confirmaciones para acciones destructivas
+\end{itemize}
+
+\subsection{Mejoras a Corto Plazo (2-4 semanas)}
+
+\begin{itemize}
+    \item Implementar pruebas unitarias con Jest
+    \item Agregar logging y monitoreo en consola
+    \item Documentar API interna del proyecto
+    \item Mejorar accesibilidad a nivel WCAG AA
+    \item Crear guía de estilo de componentes
+\end{itemize}
+
+\subsection{Mejoras a Largo Plazo (1-2 meses)}
+
+\begin{itemize}
+    \item Integración con backend real (Node.js/Express)
+    \item Sistema de autenticación robusto con JWT
+    \item Base de datos SQL o NoSQL
+    \item Análisis y reportes avanzados
+    \item Exportación a Excel mejorada con formatos
+    \item Sistema de notificaciones en tiempo real
+\end{itemize}
+
+\section{Acciones de Seguimiento}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|p{3cm}|p{3cm}|p{2cm}|p{3cm}|c|}
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{Acción} & \textbf{Responsable} & \textbf{Fecha} & \textbf{Dependencias} & \textbf{Estado} \\
+        \hline
+        & & & & ☐ \\
+        \hline
+        & & & & ☐ \\
+        \hline
+        & & & & ☐ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Plan para Próximo Ciclo PDCA}
+
+\begin{itemize}
+    \item Definir nuevos objetivos de mejora basados en resultados
+    \item Ajustar métricas de evaluación si es necesario
+    \item Incorporar feedback de usuarios finales
+    \item Planificar incremento de funcionalidades
+    \item Mantener registro histórico de mejoras
+\end{itemize}
+
+\chapter{Indicadores Clave (KPIs)}
+
+\section{Seguimiento de Métricas}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{KPI} & \textbf{Meta} & \textbf{Actual} & \textbf{Estado} \\
+        \hline
+        \% Funcionalidad Operativa & 85\% & ⭕ & \\
+        \hline
+        Defectos Críticos & 0 & ⭕ & \\
+        \hline
+        Defectos Mayores & $\leq 5$ & ⭕ & \\
+        \hline
+        Tiempo Promedio de Carga & $< 3s$ & ⭕ & \\
+        \hline
+        Cobertura de Testing & $\geq 50\%$ & ⭕ & \\
+        \hline
+        Score ESLint & 100\% & ⭕ & \\
+        \hline
+        Accesibilidad (WCAG) & $\geq 80$ & ⭕ & \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\chapter{Información del Equipo}
+
+\section{Miembros del Proyecto}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{Nombre} & \textbf{Rol} & \textbf{Email} \\
+        \hline
+        & Product Owner & \\
+        \hline
+        & Tech Lead & \\
+        \hline
+        & Developer 1 & \\
+        \hline
+        & Developer 2 & \\
+        \hline
+        & QA/Tester & \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Escalaciones y Contacto}
+
+\begin{itemize}
+    \item[\textbf{Problemas Técnicos}] Contactar al Tech Lead
+    \item[\textbf{Defectos Críticos}] Revisar e implementar corrección inmediata
+    \item[\textbf{Cambios de Scope}] Consultar con Product Owner y replanificar
+    \item[\textbf{Bloqueos}] Escalar a Tech Lead para desbloqueo urgente
+\end{itemize}
+
+\chapter{Recursos Técnicos}
+
+\section{Stack Tecnológico}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{Componente} & \textbf{Tecnología} \\
+        \hline
+        Frontend Framework & React 19.1.0 \\
+        \hline
+        Build Tool & Vite 7.0.4 \\
+        \hline
+        CSS Framework & Bootstrap 5.3.7 \\
+        \hline
+        Iconografía & Lucide React \\
+        \hline
+        Routing & React Router v7 \\
+        \hline
+        Exportación & XLSX (Excel) \\
+        \hline
+        Alerts & SweetAlert2 11.22.2 \\
+        \hline
+        Linting & ESLint 9.30.1 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Documentación de Referencia}
+
+\begin{itemize}
+    \item \href{https://react.dev}{Documentación Oficial React}
+    \item \href{https://vitejs.dev}{Documentación Vite}
+    \item \href{https://getbootstrap.com/docs/5.0}{Bootstrap 5 Documentation}
+    \item \href{https://eslint.org/docs/rules}{ESLint Rules}
+    \item \href{https://www.w3.org/WAI/WCAG21/quickref}{WCAG 2.1 Accessibility Guidelines}
+\end{itemize}
+
+\chapter*{Registro de Cambios}
+
+\section*{Ciclo \#1}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|p{8cm}|}
+        \hline
+        \rowcolor{grisClaro}
+        \textbf{Fase} & \textbf{Resultado} & \textbf{Notas} \\
+        \hline
+        PLAN & ✅ Completado & Objetivos y alcance claros definidos \\
+        \hline
+        DO & 🔄 En Progreso & Implementación en curso \\
+        \hline
+        CHECK & ⭕ Pendiente & Próxima fase a ejecutar \\
+        \hline
+        ACT & ⭕ Pendiente & Acciones de mejora pendientes \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\chapter*{Conclusión}
+
+Este documento \textcolor{cafeOscuro}{\textbf{PDCA Temporal}} proporciona un marco estructurado para la mejora continua del proyecto \textbf{KairosMix}. Mediante la aplicación rigurosa de las fases Plan-Do-Check-Act, el equipo puede:
+
+\begin{itemize}
+    \item ✓ Identificar y resolver defectos de manera sistemática
+    \item ✓ Establecer estándares de calidad claros
+    \item ✓ Mejorar continuamente la arquitectura y código
+    \item ✓ Optimizar la experiencia del usuario
+    \item ✓ Documentar lecciones aprendidas
+    \item ✓ Preparar la base para ciclos PDCA futuros
+\end{itemize}
+
+\vspace{1cm}
+
+\textcolor{cafeOscuro}{\textbf{Última actualización:}} \today
+
+\textcolor{cafeOscuro}{\textbf{Próxima revisión:}} Una semana después de iniciado el ciclo
+
+\vspace{1cm}
+
+\textit{\textcolor{grisClaro}{Este es un documento dinámico de Aseguramiento de Calidad que debe ser actualizado continuamente según los avances del proyecto.}}
+
+\end{document}
