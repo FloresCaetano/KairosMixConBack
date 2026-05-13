@@ -1,32 +1,18 @@
 spring:
-  application:
-    name: kairosmix-backend
+  datasource:
+    url: jdbc:mysql://localhost:3306/kairosmix_db
+    username: root
+    password: admin
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    show-sql: false
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.H2Dialect
-  datasource:
-    url: jdbc:h2:mem:kairosmix_db
-    username: sa
-    password: 
-    driver-class-name: org.h2.Driver
-  h2:
-    console:
+      ddl-auto: update
+  http:
+    encoding:
+      charset: UTF-8
       enabled: true
-  profiles:
-    active: dev
-
-server:
-  port: 8080
-  servlet:
-    context-path: /api
+      force: true
 
 logging:
   level:
-    com.kairosmix: DEBUG
-    org.springframework: INFO
-    org.hibernate: WARN
+    root: DEBUG
+    org.springframework: DEBUG
