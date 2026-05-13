@@ -19,7 +19,14 @@ export default defineConfig(({ command }) => {
     },
     server: {
       port: 3000,
-      open: true
+      open: true,
+      proxy: {
+        // Allows frontend to call '/api/v1/...' in dev without CORS issues.
+        '/api': {
+          target: 'http://localhost:8080',
+          changeOrigin: true,
+        },
+      },
     }
   }
 

@@ -1,4 +1,6 @@
-const BASE_URL = 'http://localhost:8080/api/v1';
+// In dev, prefer same-origin calls (via Vite proxy) with default '/api/v1'.
+// In prod, set VITE_API_BASE_URL to your deployed backend, e.g. 'https://api.example.com/api/v1'.
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api/v1';
 
 export const api = {
     // Products
@@ -57,10 +59,9 @@ export const api = {
         return res.json();
     },
     updateOrderStatus: async (id, status) => {
-        const res = await fetch(`${BASE_URL}/orders/${id}/status?newStatus=${status}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ status })
+        // Backend expects request param name 'status' (not 'newStatus') and no body.
+        const res = await fetch(`${BASE_URL}/orders/${id}/status?status=${encodeURIComponent(status)}`, {
+            method: 'PATCH'
         });
         return res.json();
     },
