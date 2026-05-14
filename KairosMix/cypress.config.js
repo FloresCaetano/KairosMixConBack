@@ -19,13 +19,16 @@ export default defineConfig({
       }
     },
     async setupNodeEvents(on, config) {
-      await addCucumberPreprocessorPlugin(on, config);
-      on(
-        'file:preprocessor',
-        createBundler({
-          plugins: [createEsbuildPlugin(config)]
-        })
-      );
+      // Only load cucumber preprocessor if feature files are being run
+      if (config.specPattern.some(pattern => pattern.includes('feature'))) {
+        await addCucumberPreprocessorPlugin(on, config);
+        on(
+          'file:preprocessor',
+          createBundler({
+            plugins: [createEsbuildPlugin(config)]
+          })
+        );
+      }
       return config;
     }
   }

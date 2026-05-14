@@ -40,7 +40,8 @@ describe('E2E Flow - Autenticación, Productos, Clientes, Pedidos', () => {
     // Editar el producto creado -> cambiar stock a 75
     cy.intercept('PUT', '**/api/v1/products/*').as('updateProduct');
     cy.get('@createdCard').find('[data-testid^=edit-product-]').click();
-    cy.get('#initialStock').clear().type('75');
+    cy.wait(500); // Esperar a que el modal se cargue
+    cy.get('#initialStock').parent().find('input[type="number"]').clear().type('75', { force: true });
     cy.contains('Actualizar').click();
     cy.wait('@updateProduct');
     cy.get('@createdCard').within(() => {
