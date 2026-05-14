@@ -56,7 +56,7 @@ const ClientForm = ({ client, onSave, onCancel, existingClients = [] }) => {
 
     const getIdTypeLabel = (idType) => {
         switch(idType) {
-            case 'cedula': return 'Cédula (minimo 10 dígitos)';
+            case 'cedula': return 'Cédula (minimo 10 dígitos';
             case 'ruc': return 'RUC (13 dígitos)';
             case 'pasaporte': return 'Pasaporte (6-9 caracteres)';
             default: return '';
