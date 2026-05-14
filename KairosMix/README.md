@@ -46,6 +46,18 @@ KairosMix es una aplicación web moderna y profesional para la gestión integral
 - npm o yarn
 - Git
 
+### Pruebas automáticas de front
+La aplicación ya incluye Cypress + Cucumber para pruebas E2E del frontend.
+
+Comandos disponibles:
+
+- `npm run cy:open`: abre el runner interactivo de Cypress
+- `npm run cy:run`: ejecuta la suite E2E en modo headless
+- `npm run test:e2e`: levanta Vite y luego ejecuta Cypress automáticamente
+- Si abres Cypress manualmente con `npx cypress open`, asegúrate de tener Vite corriendo en otra terminal con `npm run dev`
+
+Los escenarios viven en `cypress/e2e/features/` y usan datos simulados en `cypress/fixtures/`.
+
 ## 📁 Estructura del Proyecto
 
 ```

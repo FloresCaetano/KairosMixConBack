@@ -238,7 +238,7 @@ const [searchTerm, setSearchTerm] = useState('');
     };
 
   return (
-    <div className="product-manager">
+    <div className="product-manager" data-testid="product-manager">
       <div className="page-header">
         <div className="header-content">
           <h1>
@@ -263,12 +263,13 @@ const [searchTerm, setSearchTerm] = useState('');
         <form onSubmit={handleSearchSubmit} className="search-form">
           <div className="search-box">
             <Search className="search-icon" />
-            <input
+              <input
               type="text"
               placeholder="Buscar por código exacto o nombre del producto..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="form-control search-input"
+              data-testid="product-search-input"
             />
           </div>
           <div className="search-actions">
@@ -276,16 +277,18 @@ const [searchTerm, setSearchTerm] = useState('');
               type="submit" 
               className="btn btn-primary me-2"
               disabled={!searchTerm.trim()}
+              data-testid="product-search-button"
             >
               <Search size={18} className="me-1" />
               Buscar
             </button>
             {searchPerformed && (
-              <button 
-                type="button" 
-                className="btn btn-outline-secondary"
-                onClick={clearSearch}
-              >
+                <button 
+                  type="button" 
+                  className="btn btn-outline-secondary"
+                  onClick={clearSearch}
+                  data-testid="product-clear-button"
+                >
                 Limpiar
               </button>
             )}

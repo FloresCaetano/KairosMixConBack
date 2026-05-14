@@ -275,8 +275,8 @@ const ProductForm = ({ product, onSave, onCancel, existingProducts = [] }) => {
     };
 
     return (
-        <div className="form-overlay">
-        <div className="form-modal">
+        <div className="form-overlay" data-testid="product-form-overlay">
+        <div className="form-modal" data-testid="product-form">
             <div className="form-header">
             <h2>
                 <Package size={24} />
@@ -306,6 +306,7 @@ const ProductForm = ({ product, onSave, onCancel, existingProducts = [] }) => {
                             placeholder="Auto-generado"
                             readOnly
                             style={{ backgroundColor: '#f8f9fa' }}
+                            data-testid="product-code-input"
                         />
                     </div>
 
@@ -320,6 +321,7 @@ const ProductForm = ({ product, onSave, onCancel, existingProducts = [] }) => {
                             onChange={handleChange}
                             className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                             placeholder="Ej: Almendras Premium"
+                            data-testid="product-name-input"
                         />
                         {errors.name && <div className="invalid-feedback">{errors.name}</div>}
                     </div>
@@ -335,6 +337,7 @@ const ProductForm = ({ product, onSave, onCancel, existingProducts = [] }) => {
                             onChange={handleChange}
                             className={`form-control ${errors.countryOfOrigin ? 'is-invalid' : ''}`}
                             placeholder="Ej: Chile, Argentina, Brasil"
+                            data-testid="product-country-input"
                         />
                         {errors.countryOfOrigin && <div className="invalid-feedback">{errors.countryOfOrigin}</div>}
                     </div>
@@ -355,6 +358,7 @@ const ProductForm = ({ product, onSave, onCancel, existingProducts = [] }) => {
                                 step="0.01"
                                 min="0.01"
                                 max="99.99"
+                                data-testid="product-price-input"
                             />
                             <span className="input-group-text">/ lb</span>
                         </div>
@@ -377,6 +381,7 @@ const ProductForm = ({ product, onSave, onCancel, existingProducts = [] }) => {
                                 step="0.01"
                                 min="0.01"
                                 max="99.99"
+                                data-testid="product-wholesale-input"
                             />
                             <span className="input-group-text">/ lb</span>
                         </div>
@@ -399,6 +404,7 @@ const ProductForm = ({ product, onSave, onCancel, existingProducts = [] }) => {
                                 step="0.01"
                                 min="0.01"
                                 max="99.99"
+                                data-testid="product-retail-input"
                             />
                             <span className="input-group-text">/ lb</span>
                         </div>
@@ -419,6 +425,7 @@ const ProductForm = ({ product, onSave, onCancel, existingProducts = [] }) => {
                                 placeholder="0"
                                 min="0"
                                 step="1"
+                                data-testid="product-stock-input"
                             />
                             <span className="input-group-text">libras</span>
                         </div>
@@ -435,6 +442,7 @@ const ProductForm = ({ product, onSave, onCancel, existingProducts = [] }) => {
                             onChange={handleImageChange}
                             className={`form-control ${errors.image ? 'is-invalid' : ''}`}
                             accept="image/*"
+                            data-testid="product-image-input"
                         />
                         {errors.image && <div className="invalid-feedback">{errors.image}</div>}
                         <small className="form-text text-muted">
@@ -468,12 +476,14 @@ const ProductForm = ({ product, onSave, onCancel, existingProducts = [] }) => {
                         type="button" 
                         className="btn btn-danger"
                         onClick={onCancel}
+                        data-testid="product-cancel-button"
                     >
                         Cancelar
                     </button>
                     <button 
                         type="submit" 
                         className="btn btn-success d-flex align-items-center"
+                        data-testid="product-save-button"
                     >
                         <Save size={18} className="me-2" />
                         {product ? 'Actualizar' : 'Guardar'} Producto

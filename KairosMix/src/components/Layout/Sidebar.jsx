@@ -51,7 +51,7 @@ const Sidebar = () => {
     const menuItems = isClientMode ? clientMenuItems : adminMenuItems;
 
     return (
-        <aside className={`sidebar ${isClientMode ? 'client-mode' : ''}`}>
+        <aside className={`sidebar ${isClientMode ? 'client-mode' : ''}`} data-testid="sidebar">
         <div className="sidebar-header">
             <h1 
                 className="sidebar-title"
@@ -80,6 +80,7 @@ const Sidebar = () => {
                 key={item.path}
                 to={item.path}
                 className={`nav-item ${isActive ? 'active' : ''}`}
+                data-testid={`nav-${item.path === '/' ? 'home' : item.path.replaceAll('/', '')}`}
                 >
                 <div className="nav-icon">
                     <IconComponent size={24} />
