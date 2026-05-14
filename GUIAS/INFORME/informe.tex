@@ -94,6 +94,24 @@ Se integró SonarQube como herramienta principal para el análisis de código es
 \subsection{Pipeline DevSecOps (GitHub Actions)}
 Se configuró un flujo de Integración Continua y Entrega Continua (CI/CD) a través de GitHub Actions. Este pipeline automatiza la compilación del proyecto, la ejecución de las pruebas unitarias y de integración, la medición de cobertura con JaCoCo, y el análisis del código en SonarQube. De esta manera, se valida la calidad y la integridad de cada \textit{commit} de forma continua e ininterrumpida.
 
+\subsubsection{Integración Continua (CI)}
+El flujo de CI se ejecuta sobre \texttt{.github/workflows/ci.yml} y se activa en \textit{push} y \textit{pull request} hacia las ramas \texttt{main} y \texttt{develop}. Su objetivo es bloquear cambios que rompan la calidad del backend antes de llegar a producción. Entre sus pasos principales se incluyen:
+\begin{itemize}
+    \item Compilación y validación del proyecto con Maven.
+    \item Ejecución de pruebas unitarias y de integración.
+    \item Generación y publicación de reportes de cobertura.
+    \item Verificación de que el umbral mínimo de calidad se mantiene.
+\end{itemize}
+
+\subsubsection{Entrega Continua (CD)}
+El flujo de CD se define en \texttt{.github/workflows/cd.yml}. Este pipeline se dispara en \textit{push} a \texttt{main}, publicación de \textit{tags} con prefijo \texttt{v*}, publicación de \textit{releases} y ejecución manual. El trabajo de CD realiza lo siguiente:
+\begin{itemize}
+    \item Construye la imagen Docker del backend ubicado en \texttt{KairosMix-Backend}.
+    \item Publica la imagen en \textbf{GitHub Container Registry (GHCR)} con metadatos automáticos de versión.
+    \item Habilita un despliegue opcional por SSH cuando existen secretos de despliegue configurados.
+\end{itemize}
+Este diseño separa claramente la validación del código de su distribución, permitiendo trazabilidad y despliegue repetible.
+
 \section{Quality Scoring Engine}
 El motor de calidad implementado calcula el puntaje final basado en pesos específicos para este proyecto:
 \begin{itemize}
@@ -178,9 +196,19 @@ Pruebas BDD (Cucumber Scenarios) & 14 & PASS \\ \bottomrule
 Adicionalmente a las pruebas unitarias, se implementaron pruebas de integración y aceptación utilizando \textbf{Cucumber} bajo el enfoque BDD (Behavior-Driven Development).
 \begin{itemize}
     \item \textbf{Features (Gherkin)}: Definición de escenarios de prueba en lenguaje natural, facilitando la comunicación entre desarrolladores y stakeholders.
-    \item \textbf{Step Definitions}: Mapeo de escenarios a código Java automatizado para validar las respuestas y el comportamiento de la API.
+    \item \textbf{Step Definitions}: Mapeo de escenarios a código automatizado para validar respuestas y comportamiento, utilizando \texttt{features/step\_definitions/} en el backend.
     \item \textbf{Validación de Flujos}: Aseguran el correcto funcionamiento integral, validando flujos completos como la autenticación de usuarios y la gestión de procesos empresariales.
 \end{itemize}
+
+\subsection{Automatización del Frontend con Cypress + Cucumber}
+Para la validación del frontend se incorporó \textbf{Cypress} junto con \textbf{Cucumber}, permitiendo ejecutar pruebas end-to-end con lenguaje Gherkin sobre la interfaz de React.
+\begin{itemize}
+    \item \textbf{Escenarios E2E}: Se definieron features para autenticación, navegación y gestión de productos en \texttt{KairosMix/cypress/e2e/features/}.
+    \item \textbf{Step Definitions}: Los escenarios se enlazan con pasos automatizados en JavaScript para interactuar con la UI mediante selectores estables.
+    \item \textbf{Fixtures y Mocking}: Se simulan respuestas de API con fixtures para evitar dependencia del backend durante la ejecución de los tests del front.
+    \item \textbf{Ejecución Automática}: La suite puede correrse con \texttt{npm run cy:open}, \texttt{npm run cy:run} o \texttt{npm run test:e2e}.
+\end{itemize}
+Este enfoque complementa las pruebas de backend y permite verificar visualmente rutas, formularios, sesión y componentes críticos del sistema.
 
 \section{Validación del Frontend}
 
@@ -389,8 +417,10 @@ La metodología PDCA permite ciclos de mejora continua: cada iteración de testi
 \begin{itemize}
     \item Backend: \texttt{KairosMix-Backend/} (Spring Boot 3.2.0 + Java 17)
     \item Frontend: \texttt{KairosMix/} (React 19 + Vite 7)
+    \item CI: \texttt{.github/workflows/ci.yml}
+    \item CD: \texttt{.github/workflows/cd.yml}
     \item Configuración: \texttt{application-dev.yml} y \texttt{application-prod.yml}
-    \item Pruebas: 49 casos de prueba en \texttt{src/test/java/} y escenarios BDD de Cucumber
+    \item Pruebas: 49 casos de prueba en \texttt{src/test/java/}, escenarios BDD de Cucumber y E2E de Cypress
     \item Reportes: JaCoCo disponible en \texttt{target/site/jacoco/index.html}
     \item Quality Score: Endpoints disponibles en http://localhost:8080/api/v1/quality/*
 \end{itemize}

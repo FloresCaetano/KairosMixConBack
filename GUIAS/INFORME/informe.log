@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.3)  13 MAY 2026 23:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.3)  14 MAY 2026 01:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -459,84 +459,90 @@ Package pdftex.def Info: capturas/InformeSonnarQube.png  used on input line 90.
 <capturas/06_quality_score.png, id=149, 1270.7475pt x 653.44125pt>
 File: capturas/06_quality_score.png Graphic file (type png)
 <use capturas/06_quality_score.png>
-Package pdftex.def Info: capturas/06_quality_score.png  used on input line 123.
+Package pdftex.def Info: capturas/06_quality_score.png  used on input line 141.
 
-(pdftex.def)             Requested size: 409.71692pt x 210.68083pt.
-<capturas/07_quality_report.png, id=150, 1270.7475pt x 653.44125pt>
-File: capturas/07_quality_report.png Graphic file (type png)
-<use capturas/07_quality_report.png>
-Package pdftex.def Info: capturas/07_quality_report.png  used on input line 131
-.
 (pdftex.def)             Requested size: 409.71692pt x 210.68083pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[3 <./capturas/06_quality_score.png (PNG copy)>]
-<capturas/05_jacoco_index.png, id=157, 765.6103pt x 226.59656pt>
+<capturas/07_quality_report.png, id=150, 1270.7475pt x 653.44125pt>
+File: capturas/07_quality_report.png Graphic file (type png)
+<use capturas/07_quality_report.png>
+Package pdftex.def Info: capturas/07_quality_report.png  used on input line 149
+.
+(pdftex.def)             Requested size: 409.71692pt x 210.68083pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3]
+<capturas/05_jacoco_index.png, id=158, 765.6103pt x 226.59656pt>
 File: capturas/05_jacoco_index.png Graphic file (type png)
 <use capturas/05_jacoco_index.png>
-Package pdftex.def Info: capturas/05_jacoco_index.png  used on input line 154.
+Package pdftex.def Info: capturas/05_jacoco_index.png  used on input line 172.
 (pdftex.def)             Requested size: 432.48051pt x 127.99962pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4 <./capturas/07_quality_report.png (PNG copy)> <./capturas/05_jacoco_index.pn
-g>]
-<capturas/01_productos.png, id=165, 1255.69125pt x 717.68124pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4 <./capturas/06_quality_score.png (PNG copy)>] [5 <./capturas/07_quality_repo
+rt.png (PNG copy)> <./capturas/05_jacoco_index.png>]
+<capturas/01_productos.png, id=172, 1255.69125pt x 717.68124pt>
 File: capturas/01_productos.png Graphic file (type png)
 <use capturas/01_productos.png>
-Package pdftex.def Info: capturas/01_productos.png  used on input line 198.
+Package pdftex.def Info: capturas/01_productos.png  used on input line 226.
 (pdftex.def)             Requested size: 409.71692pt x 234.16351pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<capturas/02_clientes.png, id=166, 1255.69125pt x 717.68124pt>
+<capturas/02_clientes.png, id=173, 1255.69125pt x 717.68124pt>
 File: capturas/02_clientes.png Graphic file (type png)
 <use capturas/02_clientes.png>
-Package pdftex.def Info: capturas/02_clientes.png  used on input line 206.
+Package pdftex.def Info: capturas/02_clientes.png  used on input line 234.
 (pdftex.def)             Requested size: 409.71692pt x 234.16351pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<capturas/03_pedidos.png, id=167, 1255.69125pt x 741.77126pt>
+<capturas/03_pedidos.png, id=174, 1255.69125pt x 741.77126pt>
 File: capturas/03_pedidos.png Graphic file (type png)
 <use capturas/03_pedidos.png>
-Package pdftex.def Info: capturas/03_pedidos.png  used on input line 214.
+Package pdftex.def Info: capturas/03_pedidos.png  used on input line 242.
 (pdftex.def)             Requested size: 409.71692pt x 242.02356pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<capturas/04_mezcla_personalizada.png, id=168, 1270.7475pt x 653.44125pt>
+<capturas/04_mezcla_personalizada.png, id=175, 1270.7475pt x 653.44125pt>
 File: capturas/04_mezcla_personalizada.png Graphic file (type png)
 <use capturas/04_mezcla_personalizada.png>
 Package pdftex.def Info: capturas/04_mezcla_personalizada.png  used on input li
-ne 222.
+ne 250.
 (pdftex.def)             Requested size: 409.71692pt x 210.68083pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[5] [6 <./capturas/01_productos.png (PNG copy)> <./capturas/02_clientes.png (PN
-G copy)>] [7 <./capturas/03_pedidos.png (PNG copy)> <./capturas/04_mezcla_perso
-nalizada.png (PNG copy)>] [8
+[6] [7 <./capturas/01_productos.png (PNG copy)> <./capturas/02_clientes.png (PN
+G copy)>] [8 <./capturas/03_pedidos.png (PNG copy)> <./capturas/04_mezcla_perso
+nalizada.png (PNG copy)>] [9
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 308.
+(Font)              <10.95> on input line 336.
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 3
-08.
+36.
  (C:\Program Files\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 308.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 336.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9] [10] [11] (informe.aux
+[10] [11] [12] (informe.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -544,17 +550,27 @@ LaTeX Info: Redefining \% on input line 11.
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
-Package rerunfilecheck Info: File `informe.out' has not changed.
-(rerunfilecheck)             Checksum: C56EB64D850184D20FDFADFD9F6A62A6;6649.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `informe.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `informe.out':
+(rerunfilecheck)             Before: C56EB64D850184D20FDFADFD9F6A62A6;6649
+(rerunfilecheck)             After:  4343C3EC713BB3A4D89AC1744D767449;7371.
  ) 
 Here is how much of TeX's memory you used:
- 12807 strings out of 467691
- 200053 string characters out of 5425055
+ 12812 strings out of 467691
+ 200120 string characters out of 5425055
  651999 words of memory out of 5000000
- 41683 multiletter control sequences out of 15000+600000
+ 41684 multiletter control sequences out of 15000+600000
  634936 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,79p,443b,543s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,443b,637s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Progra
 m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/typ
@@ -562,9 +578,9 @@ e1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
 10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/P
 rogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on informe.pdf (11 pages, 554429 bytes).
+Output written on informe.pdf (12 pages, 559588 bytes).
 PDF statistics:
- 257 PDF objects out of 1000 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
+ 264 PDF objects out of 1000 (max. 8388607)
+ 60 named destinations out of 1000 (max. 500000)
  297 words of extra memory for PDF output out of 10000 (max. 10000000)
 
