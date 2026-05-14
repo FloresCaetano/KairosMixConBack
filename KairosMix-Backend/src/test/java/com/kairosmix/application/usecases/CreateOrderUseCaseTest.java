@@ -1,7 +1,9 @@
 package com.kairosmix.application.usecases;
 
 import com.kairosmix.domain.entities.Order;
+import com.kairosmix.domain.entities.Client;
 import com.kairosmix.domain.ports.output.OrderRepositoryPort;
+import com.kairosmix.domain.ports.output.ClientRepositoryPort;
 import com.kairosmix.domain.ports.output.ProductRepositoryPort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +20,7 @@ import static org.mockito.Mockito.*;
 class CreateOrderUseCaseTest {
     @Mock private OrderRepositoryPort orderRepository;
     @Mock private ProductRepositoryPort productRepository;
+    @Mock private ClientRepositoryPort clientRepository;
     @InjectMocks private CreateOrderUseCase useCase;
 
     @Test
@@ -28,7 +31,10 @@ class CreateOrderUseCaseTest {
     @Test
     void testExecuteValid() {
         Order order = new Order();
-        order.setTotalPrice(BigDecimal.ONE);
+        Client client = new Client();
+        client.setId(1L);
+        order.setClient(client);
+        order.setStatus(Order.OrderStatus.PENDING);
         com.kairosmix.domain.entities.OrderItem item = new com.kairosmix.domain.entities.OrderItem();
         item.setQuantity(1);
         item.setUnitPrice(BigDecimal.ONE);
@@ -38,6 +44,7 @@ class CreateOrderUseCaseTest {
         item.setProduct(product);
         order.addItem(item);
         
+        when(clientRepository.findById(1L)).thenReturn(Optional.of(client));
         when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         when(orderRepository.save(any())).thenReturn(order);
         

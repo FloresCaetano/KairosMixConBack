@@ -25,6 +25,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.30</lombok.version>
         <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
+        <!-- SonarQube Configuration -->
+        <sonar.projectKey>KairosMix</sonar.projectKey>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.sources>src/main</sonar.sources>
+        <sonar.tests>src/test</sonar.tests>
+        <sonar.java.binaries>target/classes</sonar.java.binaries>
+        <sonar.java.test.binaries>target/test-classes</sonar.java.test.binaries>
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
@@ -51,6 +59,13 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
+        </dependency>
+
+        <!-- H2 Database for tests -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <!-- Lombok -->
@@ -141,6 +156,28 @@
                 </configuration>
             </plugin>
 
+            <!-- Make main sources visible while compiling tests.
+                 This avoids Windows classpath resolution issues with target/classes. -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>add-main-sources-to-test-compile</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/main/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- JaCoCo for Code Coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
@@ -197,6 +234,13 @@
                         <include>**/*Tests.java</include>
                     </includes>
                 </configuration>
+            </plugin>
+
+            <!-- SonarQube Scanner for Maven -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.10.0.2594</version>
             </plugin>
         </plugins>
     </build>

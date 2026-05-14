@@ -33,6 +33,10 @@ public class CreateOrderUseCase {
 
         log.info("CreateOrder: Order items count = {}", order.getItems().size());
 
+        if (order.getClient() == null || order.getClient().getId() == null) {
+            throw new IllegalArgumentException("El cliente de la orden es requerido");
+        }
+
         // Recuperar el cliente desde la BD para evitar detached entity problem
         log.info("Loading client with id={}", order.getClient().getId());
         Client client = clientRepository.findById(order.getClient().getId())
@@ -47,6 +51,10 @@ public class CreateOrderUseCase {
 
         // Validar y procesar items
         for (OrderItem item : order.getItems()) {
+            if (item.getProduct() == null || item.getProduct().getId() == null) {
+                throw new IllegalArgumentException("Cada item debe tener un producto válido");
+            }
+
             log.info("  Validating item: productId={}, quantity={}, unitPrice={}", 
                 item.getProduct() != null ? item.getProduct().getId() : null,
                 item.getQuantity(),
