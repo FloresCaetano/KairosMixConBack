@@ -63,13 +63,19 @@ jobs:
     name: Deploy (Optional SSH)
     runs-on: ubuntu-latest
     needs: docker
+    env:
+      DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+      DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+      DEPLOY_SCRIPT: ${{ secrets.DEPLOY_SCRIPT }}
+      HAS_DEPLOY_CONFIG: ${{ secrets.DEPLOY_HOST != '' && secrets.DEPLOY_USER != '' && secrets.DEPLOY_SSH_KEY != '' && secrets.DEPLOY_SCRIPT != '' }}
 
     steps:
       - name: Deploy via SSH
-        if: ${{ secrets.DEPLOY_HOST != '' && secrets.DEPLOY_USER != '' && secrets.DEPLOY_SSH_KEY != '' && secrets.DEPLOY_SCRIPT != '' }}
+        if: ${{ env.HAS_DEPLOY_CONFIG == 'true' }}
         uses: appleboy/ssh-action@v1.2.0
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          script: ${{ secrets.DEPLOY_SCRIPT }}
+          host: ${{ env.DEPLOY_HOST }}
+          username: ${{ env.DEPLOY_USER }}
+          key: ${{ env.DEPLOY_SSH_KEY }}
+          script: ${{ env.DEPLOY_SCRIPT }}
