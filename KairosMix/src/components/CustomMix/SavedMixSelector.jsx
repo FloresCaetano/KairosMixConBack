@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import Swal from 'sweetalert2';
 import { createSwalDialog } from '../../utils/sweetAlertConfig';
+import { api } from '../../utils/api';
 import './SavedMixSelector.css';
 
 const SavedMixSelector = ({ savedMixes, onLoadMix }) => {
@@ -30,12 +31,7 @@ const SavedMixSelector = ({ savedMixes, onLoadMix }) => {
             }));
 
             if (result.isConfirmed) {
-                const currentMixes = JSON.parse(localStorage.getItem('savedMixes') || '[]');
-                const updatedMixes = currentMixes.filter(mix => mix.id !== mixId);
-                localStorage.setItem('savedMixes', JSON.stringify(updatedMixes));
-                
-                // Trigger a page reload to update the savedMixes prop
-                window.location.reload();
+                await api.deleteCustomMix(mixId);
 
                 await Swal.fire({
                     icon: 'success',
@@ -44,6 +40,8 @@ const SavedMixSelector = ({ savedMixes, onLoadMix }) => {
                     timer: 1500,
                     showConfirmButton: false
                 });
+
+                window.location.reload();
             }
         } catch (error) {
             await Swal.fire({

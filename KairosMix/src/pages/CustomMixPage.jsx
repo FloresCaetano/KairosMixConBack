@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import CustomMixDesigner from '../components/CustomMix/CustomMixDesigner';
 import Swal from 'sweetalert2';
+import { api } from '../utils/api';
 
 const CustomMixPage = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        // Load products from localStorage
-        const savedProducts = JSON.parse(localStorage.getItem('products') || '[]');
-        
-        // Filter products with available stock
-        const availableProducts = savedProducts.filter(product => 
-            product.initialStock > 0
-        );
-        
-        setProducts(availableProducts);
+        api.getProducts()
+            .then((items) => {
+                const availableProducts = items.filter(product => (product.currentStock ?? product.stock ?? product.initialStock ?? 0) > 0);
+                setProducts(availableProducts);
+            })
+            .catch(console.error);
     }, []);
 
     const handleCreateOrder = async (mixData) => {
@@ -63,10 +61,9 @@ const CustomMixPage = () => {
                 }
             });
 
-            if (formData) {
-                // Verify client exists
-                const clients = JSON.parse(localStorage.getItem('clients') || '[]');
-                const client = clients.find(c => c.id === formData.clientId);
+                if (formData) {
+                const clients = await api.getClients();
+                const client = clients.find(c => String(c.documentId ?? c.idNumber ?? c.identification ?? '') === formData.clientId);
                 
                 if (!client) {
                     await Swal.fire({
@@ -78,52 +75,24 @@ const CustomMixPage = () => {
                     return;
                 }
 
-                // Create order
-                const newOrder = {
-                    id: Date.now(),
-                    clientId: formData.clientId,
-                    clientName: client.name,
-                    type: 'custom_mix',
-                    mixData: mixData,
-                    products: mixData.components.map(component => ({
-                        code: component.productCode,
-                        name: component.productName,
+                const createdOrder = await api.createOrder({
+                    clientId: client.id,
+                    status: 'PENDING',
+                    notes: formData.observations,
+                    items: mixData.components.map(component => ({
+                        productId: component.productId,
                         quantity: component.quantity,
-                        unitPrice: component.price / component.quantity,
-                        totalPrice: component.price
-                    })),
-                    totalAmount: mixData.totalPrice,
-                    status: 'pending',
-                    observations: formData.observations,
-                    createdAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString()
-                };
-
-                // Save order
-                const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-                orders.push(newOrder);
-                localStorage.setItem('orders', JSON.stringify(orders));
-
-                // Update product stock
-                const currentProducts = JSON.parse(localStorage.getItem('products') || '[]');
-                const updatedProducts = currentProducts.map(product => {
-                    const orderComponent = mixData.components.find(comp => comp.productCode === product.code);
-                    if (orderComponent) {
-                        return {
-                            ...product,
-                            initialStock: product.initialStock - orderComponent.quantity
-                        };
-                    }
-                    return product;
+                        unitPrice: component.unitPrice ?? (component.price / component.quantity),
+                        priceType: 'RETAIL'
+                    }))
                 });
-                localStorage.setItem('products', JSON.stringify(updatedProducts));
 
                 await Swal.fire({
                     icon: 'success',
                     title: '¡Pedido creado exitosamente!',
                     html: `
                         <div style="text-align: left;">
-                            <p><strong>ID del Pedido:</strong> ${newOrder.id}</p>
+                            <p><strong>ID del Pedido:</strong> ${createdOrder.id}</p>
                             <p><strong>Cliente:</strong> ${client.name}</p>
                             <p><strong>Mezcla:</strong> ${mixData.name}</p>
                             <p><strong>Total:</strong> $${mixData.totalPrice.toFixed(2)}</p>
@@ -134,10 +103,8 @@ const CustomMixPage = () => {
                 });
 
                 // Refresh products list
-                const refreshedProducts = JSON.parse(localStorage.getItem('products') || '[]');
-                const availableProducts = refreshedProducts.filter(product => 
-                    product.initialStock > 0
-                );
+                const refreshedProducts = await api.getProducts();
+                const availableProducts = refreshedProducts.filter(product => (product.currentStock ?? product.stock ?? product.initialStock ?? 0) > 0);
                 setProducts(availableProducts);
             }
 

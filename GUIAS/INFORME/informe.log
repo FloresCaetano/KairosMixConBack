@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=latex 2026.5.13)  13 MAY 2026 09:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.5.3)  13 MAY 2026 23:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -120,10 +120,10 @@ Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 (C:\Program Files\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: dvips.def on input line 106.
+Package graphics Info: Driver file: pdftex.def on input line 106.
 
-(C:\Program Files\MiKTeX\tex/latex/graphics-def\dvips.def
-File: dvips.def 2025/01/21 v3.2a Graphics/color driver for dvips
+(C:\Program Files\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen160
 \Gin@req@width=\dimen161
@@ -134,10 +134,11 @@ Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
 (C:\Program Files\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: dvips.def on input line 274.
+Package xcolor Info: Driver file: pdftex.def on input line 274.
 
 (C:\Program Files\MiKTeX\tex/latex/graphics\mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1365.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
@@ -170,7 +171,7 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+Package pdftexcmds Info: \pdfdraftmode found.
 ))
 (C:\Users\caeta\AppData\Roaming\MiKTeX\tex/latex/hycolor\hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
@@ -252,19 +253,11 @@ Package hyperref Info: PDF/A mode OFF on input line 6121.
 \c@Item=\count297
 \c@Hfootnote=\count298
 )
-Package hyperref Info: Driver (default): hdvips.
-(C:\Program Files\MiKTeX\tex/latex/hyperref\hdvips.def
-File: hdvips.def 2026-04-24 v7.01q Hyperref driver for dvips
-
-(C:\Program Files\MiKTeX\tex/latex/hyperref\pdfmark.def
-File: pdfmark.def 2026-04-24 v7.01q Hyperref definitions for pdfmark specials
-\pdf@docset=\toks22
-\pdf@box=\box53
-\pdf@toks=\toks23
-\pdf@defaulttoks=\toks24
-\HyField@AnnotCount=\count299
-\Fld@listcount=\count300
-\c@bookmark@seq@number=\count301
+Package hyperref Info: Driver (autodetected): hpdftex.
+(C:\Program Files\MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2026-04-24 v7.01q Hyperref driver for pdfTeX
+\Fld@listcount=\count299
+\c@bookmark@seq@number=\count300
 
 (C:\Users\caeta\AppData\Roaming\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.
 sty
@@ -278,18 +271,19 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 84.
 )
 \Hy@SectionHShift=\skip51
-)) (C:\Users\caeta\AppData\Roaming\MiKTeX\tex/latex/titlesec\titlesec.sty
+) (C:\Users\caeta\AppData\Roaming\MiKTeX\tex/latex/titlesec\titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
-\ttl@box=\box54
+\ttl@box=\box53
 \beforetitleunit=\skip52
 \aftertitleunit=\skip53
 \ttl@plus=\dimen166
 \ttl@minus=\dimen167
-\ttl@toksa=\toks25
+\ttl@toksa=\toks22
 \titlewidth=\dimen168
 \titlewidthlast=\dimen169
 \titlewidthfirst=\dimen170
-) (C:\Users\caeta\AppData\Roaming\MiKTeX\tex/latex/booktabs\booktabs.sty
+)
+(C:\Users\caeta\AppData\Roaming\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen171
 \lightrulewidth=\dimen172
@@ -301,26 +295,26 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen178
 \cmidrulekern=\dimen179
 \defaultaddspace=\dimen180
-\@cmidla=\count302
-\@cmidlb=\count303
+\@cmidla=\count301
+\@cmidlb=\count302
 \@aboverulesep=\dimen181
 \@belowrulesep=\dimen182
-\@thisruleclass=\count304
-\@lastruleclass=\count305
+\@thisruleclass=\count303
+\@lastruleclass=\count304
 \@thisrulewidth=\dimen183
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count306
-\lst@gtempboxa=\box55
-\lst@token=\toks26
-\lst@length=\count307
+\lst@mode=\count305
+\lst@gtempboxa=\box54
+\lst@token=\toks23
+\lst@length=\count306
 \lst@currlwidth=\dimen184
-\lst@column=\count308
-\lst@pos=\count309
+\lst@column=\count307
+\lst@pos=\count308
 \lst@lostspace=\dimen185
 \lst@width=\dimen186
-\lst@newlines=\count310
-\lst@lineno=\count311
+\lst@newlines=\count309
+\lst@lineno=\count310
 \lst@maxwidth=\dimen187
 
 (C:\Program Files\MiKTeX\tex/latex/listings\lstpatch.sty
@@ -328,9 +322,9 @@ File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
-\c@lstnumber=\count312
-\lst@skipnumbers=\count313
-\lst@framebox=\box56
+\c@lstnumber=\count311
+\lst@skipnumbers=\count312
+\lst@framebox=\box55
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2025/11/14 1.11b listings configuration
@@ -343,43 +337,42 @@ Package: listings 2025/11/14 1.11b (Carsten Heinz)
     but found:
         2025/11/14 1.11b (Carsten Heinz)
     so I'm assuming it got fixed.
-(C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-dvips.def
-File: l3backend-dvips.def 2026-02-18 L3 backend support: dvips
-\l__pdfannot_backend_content_box=\box57
-\l__pdfannot_backend_model_box=\box58
-\g__pdfannot_backend_int=\count314
-\g__pdfannot_backend_link_int=\count315
-\g__pdfannot_backend_link_sf_int=\count316
+(C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2026-02-18 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count313
+) (informe.aux
+LaTeX Info: Redefining \. on input line 11.
+LaTeX Info: Redefining \% on input line 11.
+Package babel Info: 'spanish' activates 'spanish' shorthands.
+(babel)             Reported on input line 11.
 )
-No file informe.aux.
 \openout1 = `informe.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Info: Redefining \. on input line 30.
-LaTeX Info: Redefining \% on input line 30.
-Package babel Info: 'spanish' activates 'spanish' shorthands.
-(babel)             Reported on input line 30.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Info: Redefining \. on input line 29.
+LaTeX Info: Redefining \% on input line 29.
+
 *geometry* driver: auto-detecting
-*geometry* detected driver: dvips
+*geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
-* driver: dvips
+* driver: pdftex
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -410,24 +403,168 @@ Package babel Info: 'spanish' activates 'spanish' shorthands.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 30.
+(C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count314
+\scratchdimen=\dimen188
+\scratchbox=\box56
+\nofMPsegments=\count315
+\nofMParguments=\count316
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count317
+\MPscratchDim=\dimen189
+\MPnumerator=\count318
+\makeMPintoPDFobject=\count319
+\everyMPtoPDFconversion=\toks25
+) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:\Program Files\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+Package hyperref Info: Link coloring OFF on input line 29.
+ (informe.out)
+(informe.out)
 \@outlinefile=\write3
 \openout3 = `informe.out'.
 
+\c@lstlisting=\count320
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 32.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 32.
 
-Package hyperref Warning: Rerun to get /PageLabels entry.
+Overfull \hbox (4.85204pt too wide) in paragraph at lines 32--32
+ [][] 
+ []
 
-\c@lstlisting=\count317
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 39.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 39.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 39.
+[1
 
-LaTeX Warning: File `logo_universidad.png' not found on input line 33.
+{C:/Users/caeta/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+<capturas/InformeSonnarQube.png, id=139, 1156.32pt x 535.2497pt>
+File: capturas/InformeSonnarQube.png Graphic file (type png)
+<use capturas/InformeSonnarQube.png>
+Package pdftex.def Info: capturas/InformeSonnarQube.png  used on input line 90.
+
+(pdftex.def)             Requested size: 409.71692pt x 189.65152pt.
+ [2 <./capturas/InformeSonnarQube.png>]
+<capturas/06_quality_score.png, id=149, 1270.7475pt x 653.44125pt>
+File: capturas/06_quality_score.png Graphic file (type png)
+<use capturas/06_quality_score.png>
+Package pdftex.def Info: capturas/06_quality_score.png  used on input line 123.
+
+(pdftex.def)             Requested size: 409.71692pt x 210.68083pt.
+<capturas/07_quality_report.png, id=150, 1270.7475pt x 653.44125pt>
+File: capturas/07_quality_report.png Graphic file (type png)
+<use capturas/07_quality_report.png>
+Package pdftex.def Info: capturas/07_quality_report.png  used on input line 131
+.
+(pdftex.def)             Requested size: 409.71692pt x 210.68083pt.
 
 
-! LaTeX Error: File `logo_universidad.png' not found.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.33 
-     
-? 
+[3 <./capturas/06_quality_score.png (PNG copy)>]
+<capturas/05_jacoco_index.png, id=157, 765.6103pt x 226.59656pt>
+File: capturas/05_jacoco_index.png Graphic file (type png)
+<use capturas/05_jacoco_index.png>
+Package pdftex.def Info: capturas/05_jacoco_index.png  used on input line 154.
+(pdftex.def)             Requested size: 432.48051pt x 127.99962pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4 <./capturas/07_quality_report.png (PNG copy)> <./capturas/05_jacoco_index.pn
+g>]
+<capturas/01_productos.png, id=165, 1255.69125pt x 717.68124pt>
+File: capturas/01_productos.png Graphic file (type png)
+<use capturas/01_productos.png>
+Package pdftex.def Info: capturas/01_productos.png  used on input line 198.
+(pdftex.def)             Requested size: 409.71692pt x 234.16351pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<capturas/02_clientes.png, id=166, 1255.69125pt x 717.68124pt>
+File: capturas/02_clientes.png Graphic file (type png)
+<use capturas/02_clientes.png>
+Package pdftex.def Info: capturas/02_clientes.png  used on input line 206.
+(pdftex.def)             Requested size: 409.71692pt x 234.16351pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<capturas/03_pedidos.png, id=167, 1255.69125pt x 741.77126pt>
+File: capturas/03_pedidos.png Graphic file (type png)
+<use capturas/03_pedidos.png>
+Package pdftex.def Info: capturas/03_pedidos.png  used on input line 214.
+(pdftex.def)             Requested size: 409.71692pt x 242.02356pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<capturas/04_mezcla_personalizada.png, id=168, 1270.7475pt x 653.44125pt>
+File: capturas/04_mezcla_personalizada.png Graphic file (type png)
+<use capturas/04_mezcla_personalizada.png>
+Package pdftex.def Info: capturas/04_mezcla_personalizada.png  used on input li
+ne 222.
+(pdftex.def)             Requested size: 409.71692pt x 210.68083pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5] [6 <./capturas/01_productos.png (PNG copy)> <./capturas/02_clientes.png (PN
+G copy)>] [7 <./capturas/03_pedidos.png (PNG copy)> <./capturas/04_mezcla_perso
+nalizada.png (PNG copy)>] [8
+
+]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 308.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 3
+08.
+ (C:\Program Files\MiKTeX\tex/latex/base\omscmr.fd
+File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 308.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9] [10] [11] (informe.aux
+LaTeX Info: Redefining \. on input line 11.
+LaTeX Info: Redefining \% on input line 11.
+)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-03-20>
+ ***********
+Package rerunfilecheck Info: File `informe.out' has not changed.
+(rerunfilecheck)             Checksum: C56EB64D850184D20FDFADFD9F6A62A6;6649.
+ ) 
+Here is how much of TeX's memory you used:
+ 12807 strings out of 467691
+ 200053 string characters out of 5425055
+ 651999 words of memory out of 5000000
+ 41683 multiletter control sequences out of 15000+600000
+ 634936 words of font info for 64 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 75i,10n,79p,443b,543s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Progra
+m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/P
+rogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on informe.pdf (11 pages, 554429 bytes).
+PDF statistics:
+ 257 PDF objects out of 1000 (max. 8388607)
+ 56 named destinations out of 1000 (max. 500000)
+ 297 words of extra memory for PDF output out of 10000 (max. 10000000)
+

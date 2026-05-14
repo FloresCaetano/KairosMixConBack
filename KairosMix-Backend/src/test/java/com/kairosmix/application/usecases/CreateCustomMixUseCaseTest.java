@@ -1,7 +1,9 @@
 package com.kairosmix.application.usecases;
 
 import com.kairosmix.domain.entities.CustomMix;
+import com.kairosmix.domain.entities.Product;
 import com.kairosmix.domain.ports.output.CustomMixRepositoryPort;
+import com.kairosmix.domain.ports.output.ProductRepositoryPort;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,6 +17,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class CreateCustomMixUseCaseTest {
     @Mock private CustomMixRepositoryPort customMixRepository;
+    @Mock private ProductRepositoryPort productRepository;
     @InjectMocks private CreateCustomMixUseCase useCase;
 
     @Test
@@ -31,9 +34,13 @@ class CreateCustomMixUseCaseTest {
         com.kairosmix.domain.entities.MixComponent component = new com.kairosmix.domain.entities.MixComponent();
         component.setQuantity(1.0);
         component.setUnitPrice(BigDecimal.ONE);
-        component.setProduct(new com.kairosmix.domain.entities.Product());
+        Product product = new Product();
+        product.setId(1L);
+        component.setProduct(product);
         mix.getComponents().add(component);
         
+        when(customMixRepository.findByName("Mix")).thenReturn(Optional.empty());
+        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         when(customMixRepository.save(any())).thenReturn(mix);
         
         CustomMix saved = useCase.execute(mix);

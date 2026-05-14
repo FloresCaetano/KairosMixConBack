@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Save, X, Plus, Minus, Calendar, User, Package, AlertCircle } from 'lucide-react';
 import Swal from 'sweetalert2';
+import { api } from '../../utils/api';
 import './OrderForm.css';
 
 const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
@@ -48,25 +49,15 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
   }, [formData.products]);
 
   const loadClients = () => {
-    try {
-      const savedClients = localStorage.getItem('clients');
-      if (savedClients) {
-        setClients(JSON.parse(savedClients));
-      }
-    } catch (error) {
+    api.getClients().then(setClients).catch(error => {
       console.error('Error loading clients:', error);
-    }
+    });
   };
 
   const loadProducts = () => {
-    try {
-      const savedProducts = localStorage.getItem('products');
-      if (savedProducts) {
-        setProducts(JSON.parse(savedProducts));
-      }
-    } catch (error) {
+    api.getProducts().then(setProducts).catch(error => {
       console.error('Error loading products:', error);
-    }
+    });
   };
 
   const calculateTotals = () => {
@@ -109,7 +100,7 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
     }
 
     // Validar productos
-    if (formData.products.length === 0) {
+        if (formData.products.length === 0) {
       newErrors.products = 'Debe agregar al menos un producto';
     } else {
       formData.products.forEach((item, index) => {
@@ -118,9 +109,10 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
         }
         
         // Verificar stock disponible
-        const product = products.find(p => p.code === item.code);
-        if (product && item.quantity > product.stock) {
-          newErrors[`stock_${index}`] = `Stock insuficiente. Disponible: ${product.stock}`;
+        const product = products.find(p => p.id === item.productId || p.code === item.code);
+        const availableStock = product ? (product.stock ?? product.currentStock ?? product.initialStock ?? 0) : 0;
+        if (product && item.quantity > availableStock) {
+          newErrors[`stock_${index}`] = `Stock insuficiente. Disponible: ${availableStock}`;
         }
       });
     }
@@ -137,7 +129,7 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
   };
 
   const handleClientSelect = (clientId) => {
-    const selectedClient = clients.find(c => c.id === clientId);
+    const selectedClient = clients.find(c => String(c.id) === String(clientId));
     setFormData(prev => ({ ...prev, client: selectedClient }));
     setErrors(prev => ({ ...prev, client: '' }));
   };
@@ -145,7 +137,7 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
   const addProductLine = () => {
     setFormData(prev => ({
       ...prev,
-      products: [...prev.products, { code: '', name: '', quantity: 1, price: 0 }]
+      products: [...prev.products, { productId: null, code: '', name: '', quantity: 1, price: 0 }]
     }));
   };
 
@@ -164,9 +156,10 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
       if (selectedProduct) {
         updatedProducts[index] = {
           ...updatedProducts[index],
+          productId: selectedProduct.id,
           code: selectedProduct.code,
           name: selectedProduct.name,
-          price: selectedProduct.price
+          price: selectedProduct.retailPrice
         };
       }
     } else if (field === 'quantity') {
@@ -298,11 +291,12 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
                   className={`form-select ${errors.client ? 'is-invalid' : ''}`}
                   value={formData.client?.id || ''}
                   onChange={(e) => handleClientSelect(e.target.value)}
+                  data-testid="order-client-select"
                 >
                   <option value="">Seleccione un cliente</option>
                   {clients.map(client => (
                     <option key={client.id} value={client.id}>
-                      {client.name} - {client.identification}
+                      {client.name} - {client.documentId || client.idNumber || client.identification}
                     </option>
                   ))}
                 </select>
@@ -373,6 +367,7 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
               type="button"
               className="btn btn-success btn-sm"
               onClick={addProductLine}
+              data-testid="order-add-product-button"
             >
               <Plus size={16} />
               Agregar Producto
@@ -396,11 +391,12 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
                       className="form-select"
                       value={item.code}
                       onChange={(e) => updateProductLine(index, 'code', e.target.value)}
+                      data-testid={`order-product-select-${index}`}
                     >
                       <option value="">Seleccione un producto</option>
                       {products.map(product => (
                         <option key={product.code} value={product.code}>
-                          {product.name} - Stock: {product.stock}
+                          {product.name} - Stock: {product.stock ?? product.currentStock ?? product.initialStock ?? 0}
                         </option>
                       ))}
                     </select>
@@ -415,6 +411,7 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
                       min="1"
                       value={item.quantity}
                       onChange={(e) => updateProductLine(index, 'quantity', e.target.value)}
+                      data-testid={`order-product-quantity-${index}`}
                     />
                     {(errors[`quantity_${index}`] || errors[`stock_${index}`]) && (
                       <div className="invalid-feedback">
@@ -498,6 +495,7 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
             className="btn btn-secondary"
             onClick={onCancel}
             disabled={loading}
+            data-testid="order-cancel-button"
           >
             <X size={16} />
             Cancelar
@@ -506,6 +504,7 @@ const OrderForm = ({ order, isEditing, onSubmit, onCancel }) => {
             type="submit"
             className="btn btn-primary"
             disabled={loading}
+            data-testid="order-submit-button"
           >
             <Save size={16} />
             {loading ? 'Procesando...' : (isEditing ? 'Actualizar Pedido' : 'Registrar Pedido')}

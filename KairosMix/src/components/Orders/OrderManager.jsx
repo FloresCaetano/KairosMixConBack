@@ -372,6 +372,7 @@ const OrderManager = () => {
           <button
             className="btn btn-success btn-sm"
             onClick={handleAddOrder}
+            data-testid="new-order-button"
           >
             <Plus size={16} />
             Nuevo Pedido
@@ -485,7 +486,7 @@ const OrderManager = () => {
               </thead>
               <tbody>
                 {filteredOrders.map((order) => (
-                  <tr key={order.id}>
+                  <tr key={order.id} data-testid={`order-row-${order.id}`}>
                     <td>
                       <strong>#{order.id}</strong>
                     </td>
@@ -508,6 +509,7 @@ const OrderManager = () => {
                           className={`badge bg-${orderStatuses[order.status]?.color || 'secondary'} cursor-pointer`}
                           onClick={() => handleChangeStatus(order)}
                           title="Click para cambiar estado"
+                          data-testid={`order-status-${order.id}`}
                         >
                           {order.status === 'client_pending' ? 'Pedido de Cliente' : order.status}
                         </span>
@@ -531,6 +533,8 @@ const OrderManager = () => {
                           className="btn btn-outline-info"
                           onClick={() => handleViewOrder(order)}
                           title="Ver detalles"
+                          aria-label={`Ver detalles pedido ${order.id}`}
+                          data-testid={`view-order-${order.id}`}
                         >
                           <Eye size={14} />
                         </button>
@@ -538,6 +542,8 @@ const OrderManager = () => {
                           className="btn btn-outline-warning"
                           onClick={() => handleEditOrder(order)}
                           title="Editar pedido"
+                          aria-label={`Editar pedido ${order.id}`}
+                          data-testid={`edit-order-${order.id}`}
                         >
                           <Edit size={14} />
                         </button>
@@ -545,6 +551,8 @@ const OrderManager = () => {
                           className="btn btn-outline-danger"
                           onClick={() => handleDeleteOrder(order)}
                           title="Eliminar pedido"
+                          aria-label={`Eliminar pedido ${order.id}`}
+                          data-testid={`delete-order-${order.id}`}
                         >
                           <Trash2 size={14} />
                         </button>

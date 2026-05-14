@@ -161,6 +161,14 @@ const [searchTerm, setSearchTerm] = useState('');
             const newProduct = await api.createProduct({ ...productData, stock: productData.initialStock });
             setProducts([...products, newProduct]);
             setShowForm(false);
+
+            await Swal.fire({
+                icon: 'success',
+                title: '¡Guardado!',
+                text: 'El producto ha sido creado correctamente.',
+                timer: 1500,
+                showConfirmButton: false
+            });
         } catch (e) { console.error(e); }
     };    
 
@@ -170,6 +178,14 @@ const [searchTerm, setSearchTerm] = useState('');
             setProducts(products.map(p => p.id === editingProduct.id ? updated : p));
             setEditingProduct(null);
             setShowForm(false);
+
+            await Swal.fire({
+                icon: 'success',
+                title: '¡Actualizado!',
+                text: 'El producto ha sido actualizado correctamente.',
+                timer: 1500,
+                showConfirmButton: false
+            });
         } catch(e) { console.error(e); }
     };
 
@@ -236,6 +252,7 @@ const [searchTerm, setSearchTerm] = useState('');
         <button 
           className="btn btn-success d-flex align-items-center"
           onClick={() => setShowForm(true)}
+          data-testid="new-product-button"
         >
           <Plus size={20} className="me-2" />
           Nuevo Producto
@@ -298,7 +315,7 @@ const [searchTerm, setSearchTerm] = useState('');
 
       <div className="products-grid">
         {displayProducts.map(product => (
-          <div key={product.id} className="product-card">
+          <div key={product.id} className="product-card" data-testid={`product-card-${product.id}`}>
             <div className="product-image">
               {product.image ? (
                 <img src={product.image} alt={product.name} />
@@ -346,6 +363,8 @@ const [searchTerm, setSearchTerm] = useState('');
                 className="btn btn-warning btn-sm rounded-circle me-2"
                 onClick={() => openEditForm(product)}
                 title="Editar producto"
+                aria-label={`Editar producto ${product.name}`}
+                data-testid={`edit-product-${product.id}`}
                 style={{ width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
                 <Edit size={16} />
@@ -354,6 +373,8 @@ const [searchTerm, setSearchTerm] = useState('');
                 className="btn btn-danger btn-sm rounded-circle"
                 onClick={() => handleDeleteProduct(product.id)}
                 title="Eliminar producto"
+                aria-label={`Eliminar producto ${product.name}`}
+                data-testid={`delete-product-${product.id}`}
                 style={{ width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
                 <Trash2 size={16} />

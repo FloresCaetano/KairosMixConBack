@@ -36,7 +36,6 @@ public class OrderDTO {
 
     private String completedAt;
 
-    @NotBlank
     private String message;
 
     private Long version;

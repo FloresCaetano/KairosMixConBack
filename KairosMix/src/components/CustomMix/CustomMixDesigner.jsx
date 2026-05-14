@@ -120,8 +120,9 @@ const CustomMixDesigner = ({ products = [], onCreateOrder }) => {
             return 'Producto no encontrado';
         }
         
-        if (numQty > product.initialStock) {
-            return `Solo hay ${product.initialStock} libras disponibles`;
+        const availableStock = product.currentStock ?? product.stock ?? product.initialStock ?? 0;
+        if (numQty > availableStock) {
+            return `Solo hay ${availableStock} libras disponibles`;
         }
         
         return null;
@@ -214,10 +215,13 @@ const CustomMixDesigner = ({ products = [], onCreateOrder }) => {
 
             const product = products.find(p => p.code === selectedProduct);
             const newComponent = {
+                productId: product.id,
                 productCode: selectedProduct,
                 productName: product.name,
                 quantity: parseFloat(quantity),
-                price: calculateProductPrice(selectedProduct, parseFloat(quantity))
+                unitPrice: product.retailPrice,
+                price: calculateProductPrice(selectedProduct, parseFloat(quantity)),
+                subtotal: calculateProductPrice(selectedProduct, parseFloat(quantity))
             };
 
             setSelectedComponents([...selectedComponents, newComponent]);
@@ -296,7 +300,8 @@ const CustomMixDesigner = ({ products = [], onCreateOrder }) => {
             newComponents[index] = {
                 ...component,
                 quantity: parseFloat(editingQuantity),
-                price: calculateProductPrice(component.productCode, parseFloat(editingQuantity))
+                price: calculateProductPrice(component.productCode, parseFloat(editingQuantity)),
+                subtotal: calculateProductPrice(component.productCode, parseFloat(editingQuantity))
             };
 
             setSelectedComponents(newComponents);
@@ -381,10 +386,12 @@ const CustomMixDesigner = ({ products = [], onCreateOrder }) => {
                 const newMix = {
                     name: mixName,
                     components: selectedComponents.map(c => ({
+                        productId: c.productId,
                         productCode: c.productCode,
                         productName: c.productName,
                         quantity: c.quantity,
-                        price: c.price
+                        unitPrice: c.unitPrice,
+                        subtotal: c.price
                     })),
                     totalPrice: calculateTotalPrice(),
                     nutrition: calculateMixNutrition()
@@ -420,13 +427,15 @@ const CustomMixDesigner = ({ products = [], onCreateOrder }) => {
             }
 
             // Comportamiento normal para administradores
-            const newMix = {
+                const newMix = {
                 name: mixName,
                 components: selectedComponents.map(c => ({
+                        productId: c.productId,
                         productCode: c.productCode,
                         productName: c.productName,
                         quantity: c.quantity,
-                        price: c.price
+                        unitPrice: c.unitPrice,
+                        subtotal: c.price
                 })),
                 totalPrice: calculateTotalPrice(),
                 nutrition: calculateMixNutrition()
@@ -564,7 +573,7 @@ const CustomMixDesigner = ({ products = [], onCreateOrder }) => {
             if (formData) {
                 // Verificar si el cliente existe mediante API
                 const clients = await api.getClients();
-                const client = clients.find(c => c.documentId === formData.clientId); // Assuming clientId is Document ID for users
+                const client = clients.find(c => String(c.documentId ?? c.idNumber ?? c.identification ?? '') === formData.clientId);
                 
                 if (!client) {
                     await Swal.fire({
@@ -586,14 +595,14 @@ const CustomMixDesigner = ({ products = [], onCreateOrder }) => {
 
                 // Crear pedido con estado especial para clientes
                 const newOrder = {
-                    client: { id: client.id }, // Relationship mapping for backend
+                    clientId: client.id,
                     totalPrice: mixData.totalPrice,
                     status: 'CLIENT_PENDING', // Estado especial para pedidos de clientes
                     notes: formData.observations,
                     items: mixData.components.map(component => ({
-                        product: products.find(p => p.code === component.productCode),
+                        productId: component.productId,
                         quantity: component.quantity,
-                        unitPrice: component.price / component.quantity
+                        unitPrice: component.unitPrice ?? (component.price / component.quantity)
                     }))
                 };
 
@@ -606,7 +615,7 @@ const CustomMixDesigner = ({ products = [], onCreateOrder }) => {
                     html: `
                         <div style="text-align: left;">
                             <div style="background: #d4edda; padding: 15px; border-radius: 8px; border-left: 4px solid #28a745;">
-                                <p style="margin: 5px 0;"><strong>📋 ID del Pedido:</strong> #${newOrder.id}</p>
+                                <p style="margin: 5px 0;"><strong>📋 ID del Pedido:</strong> #${createdOrder.id}</p>
                                 <p style="margin: 5px 0;"><strong>👤 Cliente:</strong> ${client.name}</p>
                                 <p style="margin: 5px 0;"><strong>🥜 Mezcla:</strong> ${mixData.name}</p>
                                 <p style="margin: 5px 0;"><strong>💰 Total:</strong> $${mixData.totalPrice.toFixed(2)}</p>
@@ -687,7 +696,16 @@ const CustomMixDesigner = ({ products = [], onCreateOrder }) => {
 
     const loadSavedMix = (mix) => {
         setMixName(mix.name);
-        setSelectedComponents(mix.components);
+        setSelectedComponents((mix.components || []).map(component => ({
+            productId: component.productId ?? component.product?.id ?? null,
+            productCode: component.productCode ?? component.product?.code ?? '',
+            productName: component.productName ?? component.product?.name ?? '',
+            quantity: component.quantity,
+            unitPrice: component.unitPrice ?? component.price ?? 0,
+            price: component.price ?? component.subtotal ?? 0,
+            subtotal: component.subtotal ?? component.price ?? 0,
+            nutritionalInfo: component.nutritionalInfo ?? null
+        })));
     };
 
     const showNutritionForProduct = (productCode) => {
@@ -789,7 +807,7 @@ const CustomMixDesigner = ({ products = [], onCreateOrder }) => {
                                     {products.map(product => (
                                         <option key={product.code} value={product.code}>
                                             {product.name} - ${product.retailPrice}/lb 
-                                            ({product.initialStock} lb disponibles)
+                                            ({product.currentStock ?? product.stock ?? product.initialStock ?? 0} lb disponibles)
                                         </option>
                                     ))}
                                 </select>

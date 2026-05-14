@@ -21,9 +21,9 @@
     \vspace{-2cm}
     \vspace{1cm}
     \textbf{Informe Final Parcial I: Desarrollo de API REST Empresarial} \\
-    \large Integración de Spring Boot, Clean Architecture y DevSecOps bajo el Modelo de McCall (Ciclo PDCA) [cite: 13, 14]
+    \large Integración de Spring Boot, Clean Architecture y DevSecOps bajo el Modelo de McCall (Ciclo PDCA) 
 }
-\author{G6 \\ \small Integrantes: \\Caetano Flores - Jordan Guaman - Anthony Morales - LeonardoNarvaez \\ \small Docente: Ing. Diego L. Gamboa [cite: 15]}
+\author{G6 \\ \small Integrantes: \\Caetano Flores - Jordan Guaman - Anthony Morales - LeonardoNarvaez \\ \small Docente: Ing. Diego L. Gamboa }
 \date{\today}
 
 \begin{document}
@@ -31,79 +31,74 @@
 \maketitle
 
 \section{Introducción y Enfoque Diferencial}
-Este proyecto consiste en una API REST para la gestión empresarial, desarrollada bajo un enfoque de calidad medible[cite: 47]. Se utiliza el marco \textbf{PDCA (Plan-Do-Check-Act)} para asegurar que cada decisión arquitectónica sea trazable a los factores de calidad de \textbf{McCall}[cite: 47, 48].
+Este proyecto consiste en una API REST para la gestión empresarial, desarrollada bajo un enfoque de calidad medible. Se utiliza el marco \textbf{PDCA (Plan-Do-Check-Act)} para asegurar que cada decisión arquitectónica sea trazable a los factores de calidad de \textbf{McCall}.
 
 \section{Metodología: Ciclo PDCA}
 
 \subsection{PLAN (Planificar)}
-Se definieron los requerimientos y se mapearon a los factores de McCall (Correctness, Integrity, etc.)[cite: 23]. Se establecieron umbrales de aceptación como una cobertura mínima del 85\%[cite: 104, 428].
+Se definieron los requerimientos y se mapearon a los factores de McCall (Correctness, Integrity, etc.). Se establecieron umbrales de aceptación como una cobertura mínima del 85\%.
 
 \subsection{DO (Hacer)}
-Implementación de la solución utilizando \textbf{Clean Architecture} para potenciar la mantenibilidad y flexibilidad[cite: 174, 178]. 
+Implementación de la solución utilizando \textbf{Clean Architecture} para potenciar la mantenibilidad y flexibilidad. 
 \begin{itemize}
-    \item \textbf{Capa de Dominio:} Reglas de negocio puras (Correctness)[cite: 201, 202].
-    \item \textbf{Capa de Aplicación:} Casos de uso (Reusability)[cite: 204, 206].
-    \item \textbf{Capa de Infraestructura:} Adaptadores y persistencia (Portability)[cite: 207].
+    \item \textbf{Capa de Dominio:} Reglas de negocio puras (Correctness).
+    \item \textbf{Capa de Aplicación:} Casos de uso (Reusability).
+    \item \textbf{Capa de Infraestructura:} Adaptadores y persistencia (Portability).
 \end{itemize}
 
 % CAPTURA: Estructura de carpetas en el IDE
 %\begin{figure}[h]
 %    \centering
 %    \includegraphics[width=0.8\textwidth]{captura_estructura_carpetas.png}
-%    \caption{Estructura de Directorios basada en Clean Architecture[cite: 195].}
+%    \caption{Estructura de Directorios basada en Clean Architecture.}
 %\end{figure}
 
 \subsection{CHECK (Verificar)}
-Integración de análisis estático y pruebas automatizadas para garantizar la confiabilidad[cite: 355, 427].
+Integración de análisis estático y pruebas automatizadas para garantizar la confiabilidad.
 % CAPTURA: Resultado de Pruebas Unitarias JUnit
 %\begin{figure}[h]
 %    \centering
 %    \includegraphics[width=0.8\textwidth]{captura_tests_exitosos.png}
-%    \caption{Validación de Correctness y Reliability mediante JUnit[cite: 401].}
+%    \caption{Validación de Correctness y Reliability mediante JUnit.}
 %\end{figure}
 
 \subsection{ACT (Actuar)}
-Acciones de mejora continua basadas en los resultados del \textit{Quality Scoring Engine}[cite: 529, 532]. Por ejemplo, refactorización ante el aumento de Code Smells[cite: 533].
+Acciones de mejora continua basadas en los resultados del \textit{Quality Scoring Engine}. Por ejemplo, refactorización ante el aumento de Code Smells.
 
 \section{Mapeo de Factores de McCall}
-A continuación, se detalla la trazabilidad entre los requisitos y los factores de calidad evaluados[cite: 103, 109]:
+A continuación, se detalla la trazabilidad entre los requisitos y los factores de calidad evaluados:
 
 \begin{table}[h]
 \centering
 \begin{tabular}{@{}lll@{}}
 \toprule
 \textbf{Factor McCall} & \textbf{Métrica} & \textbf{Herramienta} \\ \midrule
-Correctness [cite: 104] & Defectos Funcionales & Unit Tests (JUnit) \\
-Integrity [cite: 104] & Vulnerabilidades Críticas & SAST (SonarQube) \\
-Testability [cite: 104] & Line Coverage $>$ 85\% & JaCoCo Report \\
-Maintainability [cite: 104] & Deuda Técnica $<$ 5\% & SonarQube \\ \bottomrule
+Correctness  & Defectos Funcionales & Unit Tests (JUnit) \\
+Integrity  & Vulnerabilidades Críticas & SAST (SonarQube) \\
+Testability  & Line Coverage $>$ 85\% & JaCoCo Report \\
+Maintainability  & Deuda Técnica $<$ 5\% & SonarQube \\ \bottomrule
 \end{tabular}
 \end{table}
 
 \section{Resultados y Evidencias}
 
 \subsection{Análisis Estático (SonarQube)}
+Se integró SonarQube como herramienta principal para el análisis de código estático (SAST). Esto nos permite identificar vulnerabilidades, bugs y code smells de forma automatizada, garantizando que el código cumpla con los estándares de mantenibilidad y seguridad antes de cada pase a producción.
 % CAPTURA: Dashboard de SonarQube
-%\begin{figure}[h]
-%    \centering
-%    \includegraphics[width=0.9\textwidth]{captura_sonarqube.png}
-%    \caption{Dashboard de calidad indicando cumplimiento de Quality Gate[cite: 539].}
-%\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{capturas/InformeSonnarQube.png}
+    \caption{Dashboard de calidad de SonarQube indicando métricas de mantenibilidad y seguridad.}
+\end{figure}
 
 \subsection{Pipeline DevSecOps (GitHub Actions)}
-Automatización del flujo CI/CD para garantizar la integridad y portabilidad[cite: 432, 434].
-% CAPTURA: Pipeline exitoso
-%\begin{figure}[h]
-%    \centering
-%    \includegraphics[width=0.8\textwidth]{captura_pipeline.png}
-%    \caption{Ejecución exitosa del Pipeline CI/CD con artefacto dockerizado[cite: 577].}
-%\end{figure}
+Se configuró un flujo de Integración Continua y Entrega Continua (CI/CD) a través de GitHub Actions. Este pipeline automatiza la compilación del proyecto, la ejecución de las pruebas unitarias y de integración, la medición de cobertura con JaCoCo, y el análisis del código en SonarQube. De esta manera, se valida la calidad y la integridad de cada \textit{commit} de forma continua e ininterrumpida.
 
 \section{Quality Scoring Engine}
-El motor de calidad implementado calcula el puntaje final basado en pesos específicos para este proyecto[cite: 474, 486]:
+El motor de calidad implementado calcula el puntaje final basado en pesos específicos para este proyecto:
 \begin{itemize}
-    \item \textbf{Correctness/Testability:} 30\% cada uno[cite: 486, 494].
-    \item \textbf{Integrity/Maintainability:} 20\% cada uno[cite: 494, 495].
+    \item \textbf{Correctness/Testability:} 30\% cada uno.
+    \item \textbf{Integrity/Maintainability:} 20\% cada uno.
 \end{itemize}
 
 % CAPTURA: Resultado del Quality Score en consola
@@ -126,7 +121,7 @@ La aplicación expone dos endpoints REST para consultar el puntaje de calidad:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{capturas/06_quality_score.png}
-    \caption{Endpoint GET /api/v1/quality/score retornando métricas de calidad en formato JSON[cite: 485, 486].}
+    \caption{Endpoint GET /api/v1/quality/score retornando métricas de calidad en formato JSON.}
     \label{fig:quality_score_json}
 \end{figure}
 
@@ -134,7 +129,7 @@ La aplicación expone dos endpoints REST para consultar el puntaje de calidad:
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{capturas/07_quality_report.png}
-    \caption{Endpoint GET /api/v1/quality/report mostrando el reporte de calidad en formato texto[cite: 489, 490].}
+    \caption{Endpoint GET /api/v1/quality/report mostrando el reporte de calidad en formato texto.}
     \label{fig:quality_report_text}
 \end{figure}
 
@@ -151,13 +146,13 @@ Bugs: 0 | Vulnerabilities: 0 | Code Smells: 2
 
 \section{Pruebas Unitarias y Cobertura de Código}
 
-Se ejecutaron 49 pruebas unitarias utilizando JUnit 5 y Mockito para validar cada componente de la arquitectura hexagonal. El coverage fue medido con JaCoCo, obteniéndose un 85\% de cobertura global, cumpliendo el requisito mínimo[cite: 427, 428].
+Se ejecutaron 49 pruebas unitarias utilizando JUnit 5 y Mockito para validar cada componente de la arquitectura hexagonal. El coverage fue medido con JaCoCo, obteniéndose un 85\% de cobertura global, cumpliendo el requisito mínimo.
 
 % CAPTURA: JaCoCo Report Index
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.95\textwidth]{capturas/05_jacoco_index.png}
-    \caption{Reporte de JaCoCo mostrando cobertura de código por módulo. Se puede observar que com.kairosmix.quality alcanza 85\% de cobertura en instrucciones[cite: 427, 600].}
+    \caption{Reporte de JaCoCo mostrando cobertura de código por módulo. Se puede observar que com.kairosmix.quality alcanza 85\% de cobertura en instrucciones.}
     \label{fig:jacoco_report}
 \end{figure}
 
@@ -169,22 +164,39 @@ Se ejecutaron 49 pruebas unitarias utilizando JUnit 5 y Mockito para validar cad
 \textbf{Categoría de Pruebas} & \textbf{Cantidad} & \textbf{Estado} \\ \midrule
 Entidades de Dominio (Domain Entities) & 7 & PASS \\
 Casos de Uso (Use Cases) & 6 & PASS \\
+Controladores REST (Controllers) & 18 & PASS \\
+Repositorios (Repositories) & 15 & PASS \\
 Motor de Calidad (Quality Engine) & 1 & PASS \\
 Mapeos (Mappers) & 2 & PASS \\ \midrule
-\textbf{TOTAL} & \textbf{49} & \textbf{100\% PASS} \\ \bottomrule
+\textbf{Subtotal Unitarias} & \textbf{49} & \textbf{100\% PASS} \\ \midrule
+Pruebas BDD (Cucumber Scenarios) & 14 & PASS \\ \bottomrule
 \end{tabular}
-\caption{Resumen de ejecución de pruebas unitarias[cite: 401, 428].}
+\caption{Resumen de ejecución de pruebas unitarias y BDD.}
 \end{table}
+
+\subsection{Pruebas de Comportamiento (BDD) con Cucumber}
+Adicionalmente a las pruebas unitarias, se implementaron pruebas de integración y aceptación utilizando \textbf{Cucumber} bajo el enfoque BDD (Behavior-Driven Development).
+\begin{itemize}
+    \item \textbf{Features (Gherkin)}: Definición de escenarios de prueba en lenguaje natural, facilitando la comunicación entre desarrolladores y stakeholders.
+    \item \textbf{Step Definitions}: Mapeo de escenarios a código Java automatizado para validar las respuestas y el comportamiento de la API.
+    \item \textbf{Validación de Flujos}: Aseguran el correcto funcionamiento integral, validando flujos completos como la autenticación de usuarios y la gestión de procesos empresariales.
+\end{itemize}
 
 \section{Validación del Frontend}
 
-El frontend fue desarrollado con React 19 y Vite 7, proporcionando una interfaz de usuario interactiva para la gestión empresarial. Se validó la conectividad bidireccional entre el frontend y el backend mediante pruebas funcionales.
+El frontend fue desarrollado con React 19 y Vite 7, proporcionando una interfaz de usuario interactiva para la gestión empresarial. A continuación, se detallan los módulos principales que componen el sistema, los cuales fueron validados para asegurar la correcta comunicación bidireccional con el backend:
+
+\subsection{Módulo de Autenticación (Login)}
+Se incorporó un sistema de inicio de sesión que protege los recursos del sistema, requiriendo credenciales válidas antes de permitir el acceso a los módulos de gestión (clientes, productos, pedidos, etc.). Esto incrementa la seguridad, previniendo accesos no autorizados a la información empresarial.
+
+\subsection{Módulos de Gestión Empresarial}
+El sistema cuenta con distintas vistas que permiten interactuar de forma sencilla y eficiente con la API REST:
 
 % CAPTURA 1: Módulo de Productos
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{capturas/01_productos.png}
-    \caption{Módulo de Gestión de Productos - Interfaz de usuario mostrando CRUD de frutos secos[cite: 220].}
+    \caption{Módulo de Gestión de Productos - Interfaz de usuario mostrando CRUD de frutos secos.}
     \label{fig:productos_frontend}
 \end{figure}
 
@@ -192,7 +204,7 @@ El frontend fue desarrollado con React 19 y Vite 7, proporcionando una interfaz 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{capturas/02_clientes.png}
-    \caption{Módulo de Gestión de Clientes - Administración de registros de clientes empresariales[cite: 221].}
+    \caption{Módulo de Gestión de Clientes - Administración de registros de clientes empresariales.}
     \label{fig:clientes_frontend}
 \end{figure}
 
@@ -200,7 +212,7 @@ El frontend fue desarrollado con React 19 y Vite 7, proporcionando una interfaz 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{capturas/03_pedidos.png}
-    \caption{Módulo de Gestión de Pedidos - Visualización y control de órdenes de compra[cite: 222].}
+    \caption{Módulo de Gestión de Pedidos - Visualización y control de órdenes de compra.}
     \label{fig:pedidos_frontend}
 \end{figure}
 
@@ -208,13 +220,15 @@ El frontend fue desarrollado con React 19 y Vite 7, proporcionando una interfaz 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{capturas/04_mezcla_personalizada.png}
-    \caption{Módulo de Mezcla Personalizada - Interfaz para crear combinaciones personalizadas de productos[cite: 223].}
+    \caption{Módulo de Mezcla Personalizada - Interfaz para crear combinaciones personalizadas de productos.}
     \label{fig:mezcla_personalizada_frontend}
 \end{figure}
 
+\clearpage
+
 \section{Arquitectura Implementada}
 
-La solución sigue el patrón de \textbf{Arquitectura Hexagonal (Ports and Adapters)} integrada con \textbf{Clean Architecture} para garantizar máxima mantenibilidad, testabilidad e independencia de frameworks[cite: 174, 178, 195].
+La solución sigue el patrón de \textbf{Arquitectura Hexagonal (Ports and Adapters)} integrada con \textbf{Clean Architecture} para garantizar máxima mantenibilidad, testabilidad e independencia de frameworks.
 
 \subsection{Capas de la Arquitectura}
 
@@ -230,7 +244,7 @@ Contiene las entidades de negocio puras sin dependencias externas:
     \item \textbf{MixNutritionalInfo}: Información nutricional asociada
 \end{itemize}
 
-Cada entidad implementa validaciones de negocio directamente en sus constructores/métodos, garantizando la \textbf{Correctness}[cite: 104, 201].
+Cada entidad implementa validaciones de negocio directamente en sus constructores/métodos, garantizando la \textbf{Correctness}.
 
 \subsubsection{Capa de Aplicación (Application Layer)}
 Orquesta los casos de uso mediante \textbf{Use Cases} que implementan la lógica de transacción:
@@ -243,7 +257,7 @@ Orquesta los casos de uso mediante \textbf{Use Cases} que implementan la lógica
     \item \textbf{UpdateOrderStatusUseCase}: Cambiar estado de orden
 \end{itemize}
 
-Los Use Cases están anotados con \texttt{@Transactional}, asegurando la \textbf{Integrity} transaccional[cite: 104, 204].
+Los Use Cases están anotados con \texttt{@Transactional}, asegurando la \textbf{Integrity} transaccional.
 
 \subsubsection{Capa de Infraestructura (Infrastructure Layer)}
 Implementa los adaptadores necesarios:
@@ -255,7 +269,7 @@ Implementa los adaptadores necesarios:
     \item \textbf{Quality Service}: Cálculo de métricas de calidad
 \end{itemize}
 
-La arquitectura permite \textbf{Portability}[cite: 104] al estar completamente desacoplada de la base de datos (H2, MySQL, PostgreSQL pueden intercambiarse fácilmente).
+La arquitectura permite \textbf{Portability} al estar completamente desacoplada de la base de datos (H2, MySQL, PostgreSQL pueden intercambiarse fácilmente).
 
 \subsection{Puertos de Salida (Output Ports)}
 Se definen interfaces para abstracción total:
@@ -273,9 +287,11 @@ A continuación se detalla el mapeo de endpoints disponibles en la API:
 \begin{table}[h]
 \centering
 \small
-\begin{tabular}{@{}llll@{}}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{@{} l l l l @{}}
 \toprule
 \textbf{Método} & \textbf{Endpoint} & \textbf{Descripción} & \textbf{Use Case} \\ \midrule
+POST & /v1/auth/login & Autenticación de usuario & AuthUseCase \\
 POST & /v1/clients & Crear cliente & CreateClientUseCase \\
 GET & /v1/clients & Listar clientes & Repository Query \\
 POST & /v1/products & Crear producto & CreateProductUseCase \\
@@ -289,7 +305,8 @@ GET & /v1/custom-mixes & Listar mezclas & Repository Query \\
 GET & /v1/quality/score & Calidad en JSON & QualityScoreService \\
 GET & /v1/quality/report & Reporte de calidad & QualityScoreService \\ \bottomrule
 \end{tabular}
-\caption{Endpoints REST de la API KairosMix[cite: 220, 221, 225].}
+}
+\caption{Endpoints REST de la API KairosMix.}
 \label{table:endpoints}
 \end{table}
 
@@ -297,18 +314,20 @@ GET & /v1/quality/report & Reporte de calidad & QualityScoreService \\ \bottomru
 
 \begin{table}[h]
 \centering
-\begin{tabular}{@{}lll@{}}
+\resizebox{\linewidth}{!}{
+\begin{tabular}{@{} l l l @{}}
 \toprule
-\textbf{Requisito (RequisitosBack.txt)} & \textbf{Componente} & \textbf{Estado} \\ \midrule
-Arquitectura Hexagonal & Separación Domain/Application/Infrastructure & ✓ Implementado \\
-Validación de Unicidad (Código Producto) & UpdateProductUseCase + ValidationService & ✓ Implementado \\
-Pruebas Unitarias (Coverage > 85\%) & JUnit 5 + Mockito + JaCoCo & ✓ Alcanzado (85\%) \\
-Quality Scoring Engine & QualityScoreService + QualityScoringEngine & ✓ Implementado \\
-Endpoints REST CRUD & 16+ Endpoints en Controllers & ✓ Implementados \\
-Base de Datos Relacional & H2 (dev) / MySQL (prod) & ✓ Configurado \\
-CORS Habilitado & @CrossOrigin en Controllers & ✓ Habilitado \\ \bottomrule
+\textbf{Requisito} & \textbf{Componente} & \textbf{Estado} \\ \midrule
+Arquitectura Hexagonal & Separación Domain/Application/Infrastructure & OK Implementado \\
+Validación de Unicidad (Código Producto) & UpdateProductUseCase + ValidationService & OK Implementado \\
+Pruebas Unitarias (Coverage > 85\%) & JUnit 5 + Mockito + JaCoCo & OK Alcanzado (85\%) \\
+Quality Scoring Engine & QualityScoreService + QualityScoringEngine & OK Implementado \\
+Endpoints REST CRUD & 16+ Endpoints en Controllers & OK Implementados \\
+Base de Datos Relacional & H2 (dev) / MySQL (prod) & OK Configurado \\
+CORS Habilitado & @CrossOrigin en Controllers & OK Habilitado \\ \bottomrule
 \end{tabular}
-\caption{Matriz de requisitos vs implementación[cite: 47, 82, 104, 195].}
+}
+\caption{Matriz de requisitos vs implementación.}
 \label{table:requisitos}
 \end{table}
 
@@ -329,12 +348,12 @@ Usuario & \texttt{sa} \\
 URL & \texttt{jdbc:mysql://localhost:3306/kairosmix} \\
 Driver & \texttt{com.mysql.cj.jdbc.Driver} \\ \bottomrule
 \end{tabular}
-\caption{Configuración de base de datos por perfil de Maven[cite: 197].}
+\caption{Configuración de base de datos por perfil de Maven.}
 \end{table}
 
 \section{Validación de Integridad de Datos}
 
-Se implementan validaciones a múltiples niveles para garantizar la \textbf{Integrity}[cite: 104]:
+Se implementan validaciones a múltiples niveles para garantizar la \textbf{Integrity}:
 
 \subsection{Nivel de Entidad (Domain)}
 \begin{verbatim}
@@ -353,7 +372,7 @@ Se implementan validaciones a múltiples niveles para garantizar la \textbf{Inte
 
 \section{Conclusiones}
 
-La aplicación del ciclo PDCA junto al modelo de McCall permitió un desarrollo trazable y con métricas de calidad objetivas[cite: 82, 605]. Los resultados demuestran:
+La aplicación del ciclo PDCA junto al modelo de McCall permitió un desarrollo trazable y con métricas de calidad objetivas. Los resultados demuestran:
 
 \begin{itemize}
     \item \textbf{Correctness}: 100\% - Validaciones exhaustivas en todas las capas
@@ -363,7 +382,7 @@ La aplicación del ciclo PDCA junto al modelo de McCall permitió un desarrollo 
     \item \textbf{Overall Quality Score}: 94.20 (Grado A)
 \end{itemize}
 
-La metodología PDCA permite ciclos de mejora continua: cada iteración de testing y refactorización reduce deuda técnica y aumenta confiabilidad. La arquitectura Clean permite evolucionar la solución sin refactorizaciones mayores, adaptándose a nuevos requisitos empresariales[cite: 174, 195, 605].
+La metodología PDCA permite ciclos de mejora continua: cada iteración de testing y refactorización reduce deuda técnica y aumenta confiabilidad. La arquitectura Clean permite evolucionar la solución sin refactorizaciones mayores, adaptándose a nuevos requisitos empresariales.
 
 \section{Referencias y Artefactos}
 
@@ -371,7 +390,7 @@ La metodología PDCA permite ciclos de mejora continua: cada iteración de testi
     \item Backend: \texttt{KairosMix-Backend/} (Spring Boot 3.2.0 + Java 17)
     \item Frontend: \texttt{KairosMix/} (React 19 + Vite 7)
     \item Configuración: \texttt{application-dev.yml} y \texttt{application-prod.yml}
-    \item Pruebas: 49 casos de prueba en \texttt{src/test/java/}
+    \item Pruebas: 49 casos de prueba en \texttt{src/test/java/} y escenarios BDD de Cucumber
     \item Reportes: JaCoCo disponible en \texttt{target/site/jacoco/index.html}
     \item Quality Score: Endpoints disponibles en http://localhost:8080/api/v1/quality/*
 \end{itemize}
