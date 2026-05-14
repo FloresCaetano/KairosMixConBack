@@ -9,6 +9,7 @@ import com.kairosmix.infrastructure.rest.dto.OrderDTO;
 import com.kairosmix.infrastructure.mapper.OrderMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import java.util.List;
 @RequestMapping("/v1/orders")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
+@Slf4j
 public class OrderController {
     private final CreateOrderUseCase createOrderUseCase;
     private final UpdateOrderStatusUseCase updateOrderStatusUseCase;
@@ -29,10 +31,23 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<OrderDTO> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
-        Order order = orderMapper.dtoToEntity(orderDTO);
-        Order created = createOrderUseCase.execute(order);
-        return ResponseEntity.status(HttpStatus.CREATED)
-            .body(orderMapper.entityToDto(created));
+        try {
+            log.info("=== ORDER CREATE REQUEST ===");
+            log.info("DTO: {}", orderDTO);
+            if (orderDTO.getItems() != null) {
+                orderDTO.getItems().forEach(item -> 
+                    log.info("  Item: productId={}, quantity={}, unitPrice={}", 
+                        item.getProductId(), item.getQuantity(), item.getUnitPrice())
+                );
+            }
+            Order order = orderMapper.dtoToEntity(orderDTO);
+            Order created = createOrderUseCase.execute(order);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                .body(orderMapper.entityToDto(created));
+        } catch (Exception e) {
+            log.error("ERROR en createOrder:", e);
+            throw e;
+        }
     }
 
     @GetMapping

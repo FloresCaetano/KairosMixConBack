@@ -1,7 +1,9 @@
 package com.kairosmix.infrastructure.mapper;
 
+import com.kairosmix.domain.entities.Client;
 import com.kairosmix.domain.entities.Order;
 import com.kairosmix.domain.entities.OrderItem;
+import com.kairosmix.domain.entities.Product;
 import com.kairosmix.infrastructure.rest.dto.OrderDTO;
 import com.kairosmix.infrastructure.rest.dto.OrderItemDTO;
 import org.springframework.stereotype.Component;
@@ -39,7 +41,9 @@ public class OrderMapper {
         }
         return Order.builder()
             .id(dto.getId())
+            .client(Client.builder().id(dto.getClientId()).build())
             .status(Order.OrderStatus.valueOf(dto.getStatus()))
+            .items(mapItemsFromDto(dto.getItems()))
             .totalPrice(dto.getTotalPrice())
             .notes(dto.getNotes())
             .version(dto.getVersion())
@@ -60,6 +64,21 @@ public class OrderMapper {
                 .unitPrice(item.getUnitPrice())
                 .priceType(item.getPriceType())
                 .subtotal(item.getSubtotal())
+                .build())
+            .toList();
+    }
+
+    private List<OrderItem> mapItemsFromDto(List<OrderItemDTO> dtoItems) {
+        if (dtoItems == null) {
+            return Collections.emptyList();
+        }
+        return dtoItems.stream()
+            .map(dto -> OrderItem.builder()
+                .id(dto.getId())
+                .product(Product.builder().id(dto.getProductId()).build())
+                .quantity(dto.getQuantity())
+                .unitPrice(dto.getUnitPrice())
+                .priceType(dto.getPriceType())
                 .build())
             .toList();
     }
